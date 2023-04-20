@@ -1,0 +1,1216 @@
+<!doctype html>
+<html lang="en" class="export">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>半老外David启蒙英语</title>
+
+  <link rel="stylesheet" href="endless_home.css" media="screen">
+
+  <!-- videojs scripts -->
+  <link href="https://cdn.hellopappa.com/lib/videojs/video-js.css" rel="stylesheet" />
+  <script src="https://cdn.hellopappa.com/lib/videojs/video.min.js"></script>
+
+  <!-- swiper js files -->
+  <link rel="stylesheet" href="https://cdn.hellopappa.com/lib/swiperjs/swiper-bundle.min.css"/>
+  <script src="https://cdn.hellopappa.com/lib/swiperjs/swiper-bundle.min.js"></script>
+
+  <!-- Wechat JS -->
+  <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
+
+  <!-- Jquery JS -->
+  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
+  <!-- Google custom font -->
+  <style>@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');</style>
+
+  <!-- Baidu analytics code -->
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?4b269ec12f3b46953c0250d11b44331c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129115472-1"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-129115472-1');
+  </script> -->
+
+
+<style>
+
+html, body {
+  width: auto!important;
+  overflow-x: hidden!important;
+}
+
+</style>
+
+</head>
+
+<body data-basename="index">
+
+<audio id="audio"></audio>
+<audio id="sfx_click" src="https://www.hellopappa.com/common/audio/button_click.mp3" preload="auto"></audio>
+<audio id="fire_click_sfx" src="misc_audio/fire_click.mp3" preload="auto"></audio>
+
+<div id="user_portrait_wrapper" class="conceal">
+  <div id="user_portrait_img_wrapper">
+    <img id="user_portrait" src='images/user_portrait_anon.png'>
+    <img id="user_badge" src="images/badge_0.png">
+  </div>
+  <div id="user_text_column">
+    <div id="user_portrait_caption">厉害学霸</div>
+    <div id="user_portrait_caption_paid_label">免费学员</div>
+  </div>
+</div>
+
+<div id="main_body">
+
+
+<!-- 1. ENDLESS CARTOON -->
+
+<div style="font-size: 12pt; margin: auto; margin-bottom: 20px; color: darkgreen;" onclick="jumpMiniPage_Landscape('https://www.hellopappa.com/endless_cartoon/set1_wpv/index.html');">暂时入口</div>
+
+<!-- endless cartoon free new user -->
+<div id="endless_cartoon_freeuser_new" class="section_wrapper popsmall" onclick="jumpMiniPage_Landscape('https://www.hellopappa.com/endless_cartoon/set1_wpv/index.html');">
+<!-- <div id="endless_cartoon_freeuser_new" class="section_wrapper" onclick="gotoEndlessCartoon();"> -->
+  <img id="endless_cartoon_free_img" class="card_shadow" src="images/endless_cartoon_free_default.png">
+  <div class="banner_corner_tag_tr_wrapper"><div class="banner_corner_tag_tr_text">娱乐启蒙</div></div>
+  <div class="banner_title_flexbox">
+    <div class="banner_title_flexbox_line1"><img class="banner_title_logo_img" src="images/endless_cartoon_title.png"></div>
+    <div class="banner_title_flexbox_line2">100个精选“搞笑”<br>英语动画片段</div>
+    <div class="banner_title_flexbox_line3">第一季</div>
+  </div>
+</div>
+
+<!-- endless cartoon free return user -->
+<div id="endless_cartoon_freeuser" class="section_wrapper popsmall conceal">
+  <div id="endless_cartoon_last_vid_default" style="background-image: url('images/0.jpeg')">
+    <img class="big_play_btn" src="images/play_button.png">
+    <div class="banner_corner_tag_bl_wrapper">刷短动画学英语</div>
+  </div>
+  <img id="endless_cartoon_free_return_img" class="card_shadow" src="images/endless_cartoon_free_return.png">
+  <div class="banner_corner_tag_tl_wrapper_short2"><div class="banner_corner_tag_tl_text">第一季</div></div>
+  <div class="endless_cartoon_data_wrapper1_short2"><span id="total_hours_1" class="total_hours">0</span>&hairsp; 小时</div>
+  <div class="endless_cartoon_data_wrapper2_short2"><span id="total_words_1" class="total_words">0</span>&hairsp; 单词</div>
+  <div class="endless_cartoon_data_wrapper3_short2"><span id="total_sentences_1" class="total_sentences">0</span>&hairsp; 句型</div>
+  <div class="endless_cartoon_data_wrapper4_short2">
+    <div>&nbsp;完成进度</div>
+    <div class="progress_bar_wrapper"><div class="progress_bar_width"></div></div>
+    <div id="total_completion_1" class="progress_complete_num">0%</div>
+    <div class="goto_report_button" onclick="jumpMiniPage('https://www.hellopappa.com/endless_cartoon_app/report/')">查报告</div>
+  </div>
+  <div class="clickbox_banner_bigimg_short" onclick="jumpMiniPage_Landscape('https://www.hellopappa.com/endless_cartoon/set1_wpv/index.html');"></div>
+  <!-- <div class="clickbox_banner_bigimg_short" onclick="gotoEndlessCartoon();"></div> -->
+  <!-- <div class="clickbox_endless_cartoon_report_short" onclick="jumpMiniPage('https://www.hellopappa.com/endless_cartoon_app/report/')"></div> -->
+</div>
+
+
+<!-- endless cartoon paid user -->
+<div id="endless_cartoon_paiduser" class="section_wrapper popsmall conceal">
+  <div id="endless_cartoon_last_vid" style="background-image: url('images/0.jpeg')">
+    <img class="big_play_btn" src="images/play_button.png">
+  </div>
+  <img id="endless_cartoon_paid_img" src="images/endless_cartoon_paid.png">
+  <div class="banner_corner_tag_tl_wrapper"><div class="banner_corner_tag_tl_text">第一季</div></div>
+  <div class="endless_cartoon_data_wrapper1"><span id="total_hours_2" class="total_hours">5</span>&hairsp; 小时</div>
+  <div class="endless_cartoon_data_wrapper2"><span id="total_words_2" class="total_words">42</span>&hairsp; 单词</div>
+  <div class="endless_cartoon_data_wrapper3"><span id="total_sentences_2" class="total_sentences">38</span>&hairsp; 句型</div>
+  <div class="endless_cartoon_data_wrapper4">
+    <div>&nbsp;完成进度</div>
+    <div class="progress_bar_wrapper"><div class="progress_bar_width"></div></div>
+    <div id="total_completion_2" class="progress_complete_num">0%</div>
+    <div class="goto_report_button" onclick="jumpMiniPage('https://www.hellopappa.com/endless_cartoon_app/report/')">查报告</div>
+  </div>
+  <div id="get_season2_btn" onclick="addFireCount();" style="background-image: url('images/icon_season2_btn.png')">点击求更新第二季</div>
+  <div id="fire_hot_wrapper" class="fadein conceal">
+    <img id="fire_hot_img" src="images/icon_fire_hot.gif">
+  </div>
+  <div id="fire_wrapper">
+    <img id="fire_img" src="images/icon_fire.gif">
+    <div id="fire_count">10</div>
+  </div>
+  <div class="clickbox_banner_bigimg" onclick="gotoEndlessCartoon();">
+    <div class="banner_corner_tag_bl_wrapper" onclick="gotoEndlessCartoon();">刷短动画学英语</div>
+  </div>
+  <!-- <div class="clickbox_endless_cartoon_report" onclick="jumpMiniPage('https://www.hellopappa.com/endless_cartoon_app/report/')"></div> -->
+</div>
+
+<!-- 2. BIG CLASS -->
+
+<!-- bigclass free user -->
+<div id="bigclass_freeuser" class="section_wrapper popsmall" onclick="jumpMiniPage('https://www.hellopappa.com/endless_cartoon_app/2a_bigbundle_menu/index.html?=1');">
+<!-- <div id="bigclass_freeuser" class="section_wrapper" onclick="gotoBigClass();"> -->
+  <img id="bigclass_free" src="images/bigclass_free.png">
+  <div class="banner_corner_tag_tr_wrapper2"><div class="banner_corner_tag_tr_text">系统启蒙</div></div>
+  <div class="banner_title_flexbox">
+    <div class="banner_title_flexbox_line1"><img class="banner_title_logo_img" src="images/bigclass_title.png"></div>
+    <div class="banner_title_flexbox_line2">家长和孩子同时启蒙</div>
+  </div>
+</div>
+
+<!-- bigclass TEMPORARY PAID USER -->
+<div id="bigclass_paiduser_temp" class="section_wrapper card_shadow popsmall conceal" onclick="jumpMiniPage('https://www.hellopappa.com/endless_cartoon_app/2a_bigbundle_menu/index.html?=1');">
+<!-- <div id="bigclass_paiduser_temp" class="section_wrapper card_shadow conceal" onclick="gotoBigClass();"> -->
+  <!-- <img id="bigclass_free" src="images/bigclass_paid_img.jpg"> -->
+  <img style="width: 29%; height: auto;" src="images/play_button.png">
+</div>
+
+
+<!-- bigclass paid user -->
+<div id="bigclass_paiduser" class="section_wrapper popsmall conceal" onclick="jumpMiniPage('https://www.hellopappa.com/endless_cartoon_app/2a_bigbundle_menu/index.html?=1');">
+<!-- <div id="bigclass_paiduser" class="section_wrapper conceal" onclick="gotoBigClass();"> -->
+  <div id="bigclass_main_img" style="background-image: url('images/bigclass_paid_img.jpg')">
+    <img class="big_play_btn" src="images/play_button.png">
+    <div class="banner_corner_tag_bl_wrapper">幼小衔接加强课</div>
+  </div>
+  <img id="bigclass_paid" src="images/bigclass_paid.png">
+  <div class="bigclass_data_wrapper1">
+    <div class="svg_wrapper">
+      <svg id="bigclass_data_num1" viewBox="0 0 100 100" preserveAspectRatio="none" data-value="50">
+        <circle r="45" cx="50" cy="50" />
+        <path class="meter" d="M5,50a45,45 0 1,0 90,0a45,45 0 1,0 -90,0" stroke-linecap="round" stroke-linejoin="round" stroke-dashoffset="282.78302001953125" stroke-dasharray="282.78302001953125" />
+        <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="20"></text>
+      </svg></div>
+    <div class="bigclass_data_circle_caption">家长培训</div>
+  </div>
+  <div class="bigclass_data_wrapper2">
+    <div class="svg_wrapper">
+      <svg id="bigclass_data_num2" viewBox="0 0 100 100" preserveAspectRatio="none" data-value="50">
+        <circle r="45" cx="50" cy="50" />
+        <path class="meter" d="M5,50a45,45 0 1,0 90,0a45,45 0 1,0 -90,0" stroke-linecap="round" stroke-linejoin="round" stroke-dashoffset="282.78302001953125" stroke-dasharray="282.78302001953125" />
+        <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="20"></text>
+      </svg></div>
+    <div class="bigclass_data_circle_caption">牛津树</div>
+  </div>
+  <div class="bigclass_data_wrapper3">
+    <div class="svg_wrapper">
+      <svg id="bigclass_data_num3" viewBox="0 0 100 100" preserveAspectRatio="none" data-value="50">
+        <circle r="45" cx="50" cy="50" />
+        <path class="meter" d="M5,50a45,45 0 1,0 90,0a45,45 0 1,0 -90,0" stroke-linecap="round" stroke-linejoin="round" stroke-dashoffset="282.78302001953125" stroke-dasharray="282.78302001953125" />
+        <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="20"></text>
+      </svg></div>
+    <div class="bigclass_data_circle_caption">高频词</div>
+  </div>
+</div>
+
+
+<!-- 3. FREE RESOURCES -->
+
+  <div id="resources_free_card" class="section_wrapper">
+    <img id="resources_free" src="images/resource_whitecard.png">
+    <div class="resources_free_flexbox">
+      <div class="resources_free_flexbox_row1"><div class="section_card_title">免费资源</div></div>
+      <div class="resources_free_flexbox_row2" onclick="jumpMiniPage('https://www.hellopappa.com/storybooks_free/single_menu_freebooks_FINAL.html')">
+        <img id="resources_books" class="popsmall" src="images/resource_books.png">
+        <div class="resources_subcard_title">250本原版电子书</div>
+        <div class="resources_subcard_button_cta1">在线阅读</div>
+      </div>
+      <div class="resources_free_flexbox_row3"></div>
+      <div class="resources_free_flexbox_row4" onclick="jumpMiniPage('https://www.hellopappa.com/endless_cartoon_app/cartoons_free/')">
+        <img id="resources_cartoons" class="popsmall" src="images/resource_cartoons.png">
+        <div class="resources_subcard_title">500集英语动画</div>
+        <div class="resources_subcard_button_cta2">立即下载</div>
+      </div>
+      <div class="resources_free_flexbox_row5"></div>
+    </div>
+  </div>
+
+
+<!-- 4. USER ACTIVITY -->
+
+  <div id="testimonials_card" class="section_wrapper conceal">
+    <img id="testimonials" src="images/testimonials_whitecard.png">
+    <div class="testimonials_flexbox">
+      <div class="testimonials_flexbox_row1"><div class="section_card_title2">活跃用户</div></div>
+      <div class="testimonials_flexbox_row2">
+
+      <!-- LIVE STREAM USERS -->
+
+          <div class="user_activity_block">
+              <!-- Slider main container -->
+              <div class="swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                  <!-- Slides -->
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_1.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_2.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_3.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_4.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_5.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_6.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_7.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_8.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_9.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_10.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_11.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_12.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_13.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_14.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_15.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_16.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_17.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_18.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_19.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_20.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_21.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_22.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_23.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_24.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_25.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_26.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_27.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_28.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_29.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_30.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_31.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_32.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_33.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_34.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_35.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_36.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_37.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_38.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_39.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_40.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_41.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_42.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_43.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_44.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_45.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_46.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_47.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_48.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_49.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                  <div class="swiper-slide"><div class="user_activity_wrapper"><div class="user_activity_flexbox">
+                        <div class="user_activity_portrait" style="background-image: url('user_portraits/user_50.jpg')"></div><div class="user_activity_desc_flexbox">
+                          <div class="user_activity_line1"><div class="user_activity_name">小萝卜</div><div class="user_activity_time"><span class="user_activity_minute">0</span>分钟前</div></div>
+                          <div class="user_activity_line2"><div class="user_activity_desc">刚刷了<span class="user_activity_bold"><span class="randuser_cartoon_min">25</span>分钟</span>动画，做对了<span class="user_activity_bold"><span class="randuser_qa_min">3</span>题</span>&thinsp;!</div></div>
+                  </div></div></div></div>
+
+                </div>
+              </div>
+
+              <div class="user_activity_block_cover"></div>
+          </div>
+
+      <!-- END LIVE STREAM USERS -->
+      </div>
+      <div class="testimonials_flexbox_row3"></div>
+    </div>
+  </div>
+
+<!-- 5. WHO AM I? -->
+
+  <div id="who_am_i_card" class="section_wrapper popsmall" onclick="jumpMiniPage('https://www.hellopappa.com/endless_cartoon_app/extras/about_me.html')">
+    <img id="who_am_i" src="images/who_am_i.png">
+    <div class="who_am_i_flexbox">
+      <div class="who_am_i_line1">半老外David是谁？</div>
+      <div class="who_am_i_line2">他为什么能带你的孩子<br>学好英语？</div>
+      <div class="who_am_i_button_cta">点击了解</div>
+    </div>
+  </div>
+
+<br>
+<br>
+
+</div> <!-- main body end div -->
+
+</div>
+
+<!-- FOOTERS -->
+
+<footer id="buynow_footer">
+    <div class="footer_div slidein_delay" onclick="jumpMiniPage('https://www.hellopappa.com/endless_cartoon_app/buynow/');">
+      <img class="buy_banner" src="images/buy_now.png">
+      <div class="buy_banner_text">立即<br>购买</div>
+    </div>
+</footer>
+
+<div id="bug_footer" class="conceal">
+  <div class="bug_footer_tab_wrapper" onclick="toggleBugFooter();"><div class="bug_footer_tab"><img class="icon_bug" src="images/icon_bug.png">有遇到了bug?</div></div>
+  <div class="bug_footer_banner" onclick="toggleBugFooter();">
+    <div class="bug_footer_banner_text">小程序也有崩溃的时候</div>
+    <div class="bug_footer_banner_btn" onclick="jumpMiniPage('https://www.hellopappa.com/endless_cartoon_app/extras/bugs.html')">联系我搞定TA</div>
+  </div>
+</div>
+
+
+</body>
+
+
+
+<script>
+
+// GLOBAL VARIABLES
+
+var endless_cartoon_freeuser_new = document.getElementById('endless_cartoon_freeuser_new');
+var endless_cartoon_freeuser = document.getElementById('endless_cartoon_freeuser');
+var endless_cartoon_paiduser = document.getElementById('endless_cartoon_paiduser');
+var bigclass_freeuser = document.getElementById('bigclass_freeuser')
+var bigclass_paiduser_temp = document.getElementById('bigclass_paiduser_temp');
+var bigclass_paiduser = document.getElementById('bigclass_paiduser');
+var resources_free_card = document.getElementById('resources_free_card');
+var testimonials_card = document.getElementById('testimonials_card');
+var who_am_i_card = document.getElementById('who_am_i_card');
+
+var user_activity_portraits = document.getElementsByClassName('user_activity_portrait');
+var user_activity_names = document.getElementsByClassName('user_activity_name');
+var user_activity_descriptions = document.getElementsByClassName('user_activity_desc');
+var user_activity_minutes = document.getElementsByClassName('user_activity_minute');
+var total_users = user_activity_portraits.length;
+var user_array_shuffle = []; // shuffled user list kept here
+var user_time_tracking_dict = {}; // use to track user times, updated every 10 to 90 seconds, key is user index position in user_array_shuffle
+var next_rand_update = randomInteger(3,5) * 1000 ; // timing of next random update
+var next_user_pos = total_users - 4; // set at -4 b/c four users always show up first, when update function is called we move down 1 pos so that the 5th user from end is ready to be called
+var interval_time_elapsed = 0;
+
+var fire_count = document.getElementById('fire_count');
+var fire_count_num = parseInt(fire_count.innerHTML);
+var fire_active_clicks = 0;
+var fire_hot_img = document.getElementById('fire_hot_img');
+var fire_wrapper = document.getElementById('fire_wrapper');
+
+var buynow_footer = document.getElementById('buynow_footer');
+var bug_footer = document.getElementById('bug_footer');
+
+var video_id_thumb_dict;
+
+var user_open_id = '';
+var user_info_data;
+var json_data;
+
+var user_portrait_wrapper = document.getElementById('user_portrait_wrapper');
+var user_portrait = document.getElementById('user_portrait');
+var user_badge = document.getElementById('user_badge');
+var user_portrait_caption = document.getElementById('user_portrait_caption');
+var user_portrait_caption_paid_label = document.getElementById('user_portrait_caption_paid_label');
+
+// setup username lookup based on filename
+// note: * WE NEED TO ADD SUFFICIENTLY LARGE RANDOM USERS (SAY 50 - 100)
+//       WE DO NOT WANT SWIPERJS FROM LOOPING FROM INDEX 0 - LAST INDEX,
+//       AS THIS WILL CREATE INDEXING ISSUES! */
+
+var user_name_lookup_dict = {
+  'user_1.jpg' : '任妍霖Jessica',
+  'user_2.jpg' : '莉',
+  'user_3.jpg' : 'Sherry',
+  'user_4.jpg' : 'liujia',
+  'user_5.jpg' : '樊小木',
+  'user_6.jpg' : 'Julia💝宸',
+  'user_7.jpg' : 'DJie',
+  'user_8.jpg' : '陈冰心',
+  'user_9.jpg' : '辛俊红',
+  'user_10.jpg' : 'SH',
+  'user_11.jpg' : '林娜',
+  'user_12.jpg' : 'Anny',
+  'user_13.jpg' : '佳琪（Michelle）',
+  'user_14.jpg' : 'zy赵林煊',
+  'user_15.jpg' : '包婷婷',
+  'user_16.jpg' : '🐍Xiang向Xi西',
+  'user_17.jpg' : '吴小迪爱美丽',
+  'user_18.jpg' : '兰峰',
+  'user_19.jpg' : '劉陽【胡子】',
+  'user_20.jpg' : '美味',
+  'user_21.jpg' : '静竹姐姐',
+  'user_22.jpg' : '程锦霞',
+  'user_23.jpg' : '诸丛瑜',
+  'user_24.jpg' : 'beautyCQ',
+  'user_25.jpg' : '杏',
+  'user_26.jpg' : 'HaoHao吴🍀',
+  'user_27.jpg' : '杨芳',
+  'user_28.jpg' : '范慧敏',
+  'user_29.jpg' : '润乙（徐宁）',
+  'user_30.jpg' : 'Yana',
+  'user_31.jpg' : '翠',
+  'user_32.jpg' : '杨叶',
+  'user_33.jpg' : '奇奇Kiky',
+  'user_34.jpg' : '咚咚咚',
+  'user_35.jpg' : '史佳晶',
+  'user_36.jpg' : 'T - pa',
+  'user_37.jpg' : 'Amy pang',
+  'user_38.jpg' : 'GJ',
+  'user_39.jpg' : '乌语若',
+  'user_40.jpg' : '可可小熊饼儿🎀',
+  'user_41.jpg' : '崔瑛',
+  'user_42.jpg' : '非彼何',
+  'user_43.jpg' : '成成妈',
+  'user_44.jpg' : '高竹',
+  'user_45.jpg' : 'cher',
+  'user_46.jpg' : '♂救命啊♂',
+  'user_47.jpg' : '王宇',
+  'user_48.jpg' : '晓红',
+  'user_49.jpg' : '🍭笑',
+  'user_50.jpg' : 'Jiaqi',
+
+};
+
+// Fisher-Yates shuffle method for randomizing items in arrays
+function shuffle(array) {
+	let currentIndex = array.length,  randomIndex;
+	while (currentIndex != 0) {
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex--;
+		[array[currentIndex], array[randomIndex]] = [
+			array[randomIndex], array[currentIndex]];
+	}
+return array;
+}
+
+// Returns an integer random number between min (included) and max (included):
+function randomInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+</script>
+
+<!-- video thumbnail lookup table -->
+<script src="https://www.hellopappa.com/endless_cartoon_app/report/js_tables/video_id_thumb_lookup_all.js"></script>
+
+
+<script>
+
+// INITIATE SWIPER JS
+
+const swiper = new Swiper('.swiper', {
+  // Optional parameters
+  direction: 'vertical',
+  loop: true,
+  slidesPerView: 2,
+  spaceBetween: 10,
+  initialSlide: 50,
+  allowTouchMove: false,
+
+  // If we need pagination
+  pagination: {
+    el: '.swiper-pagination',
+  },
+
+  // Navigation arrows
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+
+  // autoplay, in future randomize timing
+  autoplay: {
+    delay: next_rand_update, // in milliseconds
+    reverseDirection: true,
+  },
+
+});
+
+
+// SELF INIT FUNCTION
+
+(function () {
+
+  // get user open_id from url
+  current_url = window.location.href;
+  if (current_url.indexOf('openid=') != -1) {
+      pos = current_url.indexOf('openid=') + 7;
+      from_end = (pos - current_url.length);
+      user_open_id = current_url.slice(from_end);
+  } else {
+      user_open_id = 'N/A' // default placeholder value
+  }
+
+  // get ajax data
+  if (user_open_id != 'N/A') {
+    // get paid status + acivity data
+    $.ajax({
+      url: "https://app.hellopappa.com/talentpool/english/api/home/data",
+      method:'POST',
+      data: {
+        openid: user_open_id,
+      },
+      success: function(result) {
+         json_data = JSON.parse(result).data;
+         console.log("JSON DATA 1")
+         console.log(json_data);
+
+         // execute rest of startup functions
+         updateViewableCards(json_data);
+         updateUserActivitySummary(json_data);
+         updateWechatUserWrapper_paytag(json_data);
+      }
+    });
+    // get user id data
+    $.ajax({
+        url: "https://app.hellopappa.com/talentpool/english/api/user/detail",
+        method:'POST',
+        data: {
+          openid: user_open_id
+      },
+      success: function( result ) {
+        let json_data_2 = JSON.parse(result).data;
+        console.log("JSON DATA 2")
+        console.log(json_data_2);
+        updateWechatUserWrapper_name(json_data_2);
+      }
+    });
+  } else {
+    console.log('(ajax call failed - no openid available!)')
+  }
+
+  console.log("next_random_update: " + next_rand_update);
+
+  randomizeEndlessCartoonBannerImg();
+  randomizeUsers();
+  InitialUserTimes();
+
+  // slidechange eventlistener
+  swiper.on('slideChange', function () {
+
+    console.log("(slide change)");
+    addNextUserActivity();
+    setNextRandUpdate();
+    console.log("next_rand_update: " + next_rand_update);
+    swiper.params.autoplay.delay = next_rand_update;
+
+  });
+
+}());
+
+
+function gotoURL(elem) {
+  window.location.href = elem;
+}
+
+function jumpMiniPage(elem) {
+  sfx = document.getElementById("sfx_click");
+  sfx.play();
+  let url = '../web/web?url='+elem;
+  setTimeout(function() {
+    wx.miniProgram.navigateTo({
+        url: url
+    });
+  }, 750);
+}
+
+function jumpMiniPage_Landscape(elem) {
+  sfx = document.getElementById("sfx_click");
+  sfx.play();
+  let url = '../landscape/landscapeweb?url='+elem;
+  setTimeout(function() {
+    wx.miniProgram.navigateTo({
+        url: url
+    });
+  }, 750);
+}
+
+function gotoEndlessCartoon() {
+  var url = 'https://www.hellopappa.com/endless_cartoon/set1_wpv/index_free.html'
+  var pay_status = json_data['endless_cartoon_paid_status'];
+  if (pay_status == -1) {url = 'https://www.hellopappa.com/endless_cartoon/set1_wpv/index_free_33_unlimited.html' }
+  if (pay_status == 1) {url = 'https://www.hellopappa.com/endless_cartoon/set1_wpv/index.html' }
+  console.log(url)
+  console.log("pay_status: " + pay_status);
+  jumpMiniPage_Landscape(url);
+}
+
+function gotoBigClass() {
+  var url = 'https://www.hellopappa.com/endless_cartoon_app/2a_bigbundle_menu/index.html?=1'
+  var pay_status = json_data['bigclass_paid_status'];
+  if (pay_status == 1) {var url = 'https://www.hellopappa.com/endless_cartoon_app/2a_bigbundle_menu/index_666.html?=2' }
+  jumpMiniPage(url);
+}
+
+function randomizeUsers () {
+  // setup rand_int array
+  for (var i=1; i<=total_users; i++) {
+    user_array_shuffle.push(i);
+  }
+  shuffle(user_array_shuffle);
+  console.log("Setting up initial user random list");
+  console.log(user_array_shuffle);
+  // randomize portraits and names
+  for (var i=0; i<user_activity_portraits.length; i++) {
+    rand_int = user_array_shuffle[i];
+    user_thumbnail = 'user_' + rand_int + '.jpg';
+    user_name = user_name_lookup_dict[user_thumbnail];
+    user_activity_portraits[i].style.backgroundImage = 'url(' + 'user_portraits/' + user_thumbnail; + ')'
+    user_activity_names[i].innerHTML = user_name;
+  }
+  // randomize user cartoon and qa minutes
+  cartoon_min_array = document.getElementsByClassName('randuser_cartoon_min');
+  qa_min_array = document.getElementsByClassName('randuser_qa_min');
+  for (i=0; i<cartoon_min_array.length; i++) {
+    rand_minutes_1_short = randomInteger(5, 29);
+    rand_minutes_1_long = randomInteger(30, 70);
+    rand_probability = randomInteger(1, 100);
+    var rand_minutes_1;
+    if (rand_probability <= 80) {
+      rand_minutes_1  = rand_minutes_1_short;
+    } else {
+      rand_minutes_1  = rand_minutes_1_long;
+    }
+    rand_divider = randomInteger(75,185) / 100;
+    rand_minutes_2 = Math.round(rand_minutes_1 / rand_divider);
+    cartoon_min_array[i].innerHTML = rand_minutes_1;
+    qa_min_array[i].innerHTML = rand_minutes_2;
+  }
+}
+
+function InitialUserTimes () {
+  temp_array = [];
+  a = randomInteger(1,4);
+  b = randomInteger(3,6);
+  c = randomInteger(4,8);
+  d = randomInteger(7,9);
+  temp_array.push(a);
+  temp_array.push(b);
+  temp_array.push(c);
+  temp_array.push(d);
+  temp_array.sort();
+  // we set 4 initial users with random times (prev two, but now we autoplay forward 1 slide when html is loading)
+  for (var i=0; i<user_activity_minutes.length; i++) {
+    if (i == user_activity_minutes.length - 4) {
+        user_activity_minutes[i].innerHTML = temp_array[0];
+        user_time_tracking_dict[i] = parseFloat(temp_array[0]);
+    } else if (i == user_activity_minutes.length - 3) {
+        user_activity_minutes[i].innerHTML = temp_array[1];
+        user_time_tracking_dict[i] = parseFloat(temp_array[1]);
+    } else if (i == user_activity_minutes.length - 2) {
+        user_activity_minutes[i].innerHTML = temp_array[2];
+        user_time_tracking_dict[i] = parseFloat(temp_array[2]);
+    } else if (i == user_activity_minutes.length - 1) {
+        user_activity_minutes[i].innerHTML = temp_array[3];
+        user_time_tracking_dict[i] = parseFloat(temp_array[3]);
+    }  else {
+        user_activity_minutes[i].innerHTML = 0;
+        user_time_tracking_dict[i] = [ 0 , 0 ]
+    }
+  }
+  console.log("Initial user times")
+  console.log(user_time_tracking_dict);
+}
+
+function setNextRandUpdate () {
+  next_rand_update = randomInteger(15, 180) * 1000; // in milliseconds
+}
+
+function addNextUserActivity () {
+  next_user_pos -= 1;
+  if (next_user_pos == -1) { next_user_pos = total_users ; }
+  console.log("NEXT USER POS: " + next_user_pos);
+  // update user_time_tracking_dict
+  for (var i=0; i<user_activity_minutes.length; i++) {
+    if (i == next_user_pos) {
+      user_time_tracking_dict[i] = 1;
+      user_activity_minutes[i].innerHTML = user_time_tracking_dict[i];
+    } else if ( i > next_user_pos ) {
+      user_filename = 'user_' + (i+1) + '.jpg';
+      current_time = user_time_tracking_dict[i];
+      time_elapsed = next_rand_update/1000/60;
+      new_time = parseFloat(current_time) + parseFloat(time_elapsed);
+      user_time_tracking_dict[i] = new_time;
+      new_time_rounded = Math.round(new_time)
+      if (new_time_rounded == 0) { new_time_rounded = 1; }
+      user_activity_minutes[i].innerHTML = new_time_rounded;
+    } else {
+      // do nothing
+    }
+  }
+  console.log(user_time_tracking_dict);
+}
+
+// circle progress bar animations
+
+// Get all the Meters
+const meters = document.querySelectorAll('svg[data-value] .meter');
+
+meters.forEach((path) => {
+  // Get the length of the path
+  let length = path.getTotalLength();
+
+  // Get the value of the meter
+  let value = parseInt(path.parentNode.getAttribute('data-value'));
+  // Calculate the percentage of the total length
+  let to = length * ((100 - value) / 100);
+  // Trigger Layout in Safari hack https://jakearchibald.com/2013/animated-line-drawing-svg/
+  path.getBoundingClientRect();
+  // Set the Offset
+  path.style.strokeDashoffset = Math.max(0, to);   path.nextElementSibling.textContent = `${value}%`;
+});
+
+
+function addFireCount() {
+  // play sfx
+  fire_click_sfx = document.getElementById('fire_click_sfx');
+  fire_click_sfx.play();
+  // pop button repeatedly
+  get_season2_btn = document.getElementById('get_season2_btn');
+  get_season2_btn.classList.add('pop');
+  setTimeout(function() { get_season2_btn.classList.remove('pop'); }, 150);
+  // pop fire
+  fire_img = document.getElementById('fire_img');
+  fire_count_num += 1;
+  if (fire_active_clicks<=40) { fire_active_clicks += 1; }
+  fire_count.innerHTML = fire_count_num;
+  fire_width = 75 + fire_active_clicks + '%'
+  fire_hot_wrapper.classList.remove('conceal');
+  fire_hot_img.style.width = fire_width;
+  fire_img.classList.add('popfire');
+  fire_hot_img.classList.add('popfire_hot');
+  fire_count.classList.add('popfire_text');
+  setTimeout(function() { fire_img.classList.remove('popfire'); }, 200);
+  setTimeout(function() { fire_hot_img.classList.remove('popfire_hot');}, 400);
+  setTimeout(function() { fire_count.classList.remove('popfire_text');}, 200);
+}
+
+var bug_footer_status = -1;
+var bug_footer = document.getElementById("bug_footer");
+
+
+function toggleBugFooter(){
+  console.log("Clicked")
+  if (bug_footer_status == -1) {
+    document.getElementById("bug_footer").style.bottom = "0";
+    bug_footer_status = 1;
+  } else {
+    console.log("hello")
+    document.getElementById("bug_footer").style.bottom = "-68px"; // equivalent to height of 'bug_footer_banner'
+    bug_footer_status = -1;
+  }
+}
+
+function randomizeEndlessCartoonBannerImg() {
+  var total_covers = 7;
+  var rand_int = randomInteger(1,8);
+  var rand_img_url = 'images/endless_cartoon_free_' + rand_int + '.png'
+  banner_div = document.getElementById('endless_cartoon_free_img');
+  banner_div.src = rand_img_url
+}
+
+function updateViewableCards(elem) {
+  // check endless cartoon paid status
+  if (user_open_id != 'N/A') {
+    endless_cartoon_freeuser_new.classList.add('conceal');
+    endless_cartoon_freeuser.classList.remove('conceal');
+    if (elem['endless_cartoon_paid_status'] == 1) {
+      // note DO NOT SHOW endless_cartoon_paiduser until 求更新第二季 is ready
+      // endless_cartoon_paiduser.classList.remove('conceal');
+      endless_cartoon_freeuser.classList.remove('conceal');
+      who_am_i_card.classList.add('conceal');
+    } else if (elem['endless_cartoon_paid_status'] == -1) {
+      // do nothing for now
+    } else {
+      // do nothing
+    }
+  }
+  // check bigclass cartoon paid status
+  if (elem['bigclass_paid_status'] == 1) {
+    bigclass_freeuser.classList.add('conceal');
+    // note DO NOT SHOW bigclass_paiduser until data metrics are ready, show bigclass_paiduser_temp instead
+    // bigclass_paiduser.classList.remove('conceal');
+    bigclass_paiduser_temp.classList.remove('conceal');
+    who_am_i_card.classList.add('conceal');
+  } else {
+    // do nothing
+  }
+  // check buy now, report bug footers
+  if (elem['endless_cartoon_paid_status'] == 1) {
+    buynow_footer.classList.add('conceal');
+    bug_footer.classList.remove('conceal');
+  }
+}
+
+function updateUserActivitySummary(elem) {
+  // update endless cartoon last vid thumbnail (note: kept as 2 separate ids)
+  video_id = elem['user_latest_video_id'];
+  video_id_url = 'https://www.hellopappa.com/endless_cartoon/set1_wpv/video_thumb/' + video_id_thumb_dict[video_id];
+  last_vid_thumb1 = document.getElementById('endless_cartoon_last_vid_default');
+  last_vid_thumb2 = document.getElementById('endless_cartoon_last_vid');
+  last_vid_thumb1.style.backgroundImage = 'url(' + video_id_url + ')';
+  last_vid_thumb2.style.backgroundImage = 'url(' + video_id_url + ')';
+  // update endless cartoon summary metrics, note every id has two versions
+  temp_total_hours = elem['user_score']['hours'];
+  temp_total_words = elem['user_score']['word'];
+  temp_total_sentences = elem['user_score']['sentence'];
+  temp_completion_rate = elem['user_score']['completion_rate'];
+  total_hours_1 = document.getElementById('total_hours_1');
+  total_hours_2 = document.getElementById('total_hours_2');
+  total_words_1 = document.getElementById('total_words_1');
+  total_words_2 = document.getElementById('total_words_2');
+  total_sentences_1 = document.getElementById('total_sentences_1');
+  total_sentences_2 = document.getElementById('total_sentences_2');
+  total_completion_1 = document.getElementById('total_completion_1');
+  total_completion_2 = document.getElementById('total_completion_2');
+  setTimeout(function() {
+    duration = 400;
+    animateHours(total_hours_1, temp_total_hours, duration);
+    animate(total_words_1, 0, temp_total_words, duration);
+    animate(total_sentences_1, 0, temp_total_sentences, duration);
+    animateHours(total_hours_2, temp_total_hours, duration);
+    animate(total_words_2, 0, temp_total_words, duration);
+    animate(total_sentences_2, 0, temp_total_sentences, duration);
+  }, 750);
+}
+
+function updateWechatUserWrapper_name(elem) {
+  user_portrait_wrapper.classList.remove('conceal');
+  user_portrait.src = elem['avatarUrl'];
+  user_portrait_caption.innerHTML = elem['nickname'];
+}
+
+function updateWechatUserWrapper_paytag(elem) {
+  if (elem['endless_cartoon_paid_status'] == 1 && elem['bigclass_paid_status'] == 1) {
+    user_portrait_caption_paid_label.innerHTML = 'SVIP&thinsp;学员'
+    user_portrait_caption_paid_label.style.color = '#D63C2C'
+    user_portrait_caption_paid_label.style.fontWeight = '800'
+    user_badge.src = 'images/badge_3.png';
+  } else if (elem['endless_cartoon_paid_status'] < 1 && elem['bigclass_paid_status'] == 1) {
+    user_portrait_caption_paid_label.innerHTML = 'VIP&thinsp;学员'
+    user_portrait_caption_paid_label.style.color = '#F09D4B'
+    user_portrait_caption_paid_label.style.fontWeight = '600'
+    user_badge.src = 'images/badge_2.png';
+  } else if (elem['endless_cartoon_paid_status'] == 1 && elem['bigclass_paid_status'] == 0) {
+    user_portrait_caption_paid_label.innerHTML = '初级学员'
+    user_portrait_caption_paid_label.style.color = '#9F81F7'
+    user_portrait_caption_paid_label.style.fontWeight = '400'
+    user_badge.src = 'images/badge_1.png';
+  } else if (elem['endless_cartoon_paid_status'] == -1 && json_delemata['bigclass_paid_status'] == 0) {
+    user_portrait_caption_paid_label.innerHTML = '3天学员'
+    user_portrait_caption_paid_label.style.color = '#8AA933'
+    user_badge.src = 'images/badge_0b.png';
+  } else {
+    user_portrait_caption_paid_label.innerHTML = '免费学员'
+    user_portrait_caption_paid_label.style.color = '#7CBAF9'
+    user_badge.src = 'images/badge_0.png';
+  }
+}
+
+
+// custom function to animate total hours, needed b/c has decimal point
+function animateHours(obj, hours, duration) {
+  let text2 = document.getElementById('ajax_hours');
+  // console.log(roundOneDecimal((parseInt(hours) * (1/10))));
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (1/30) * 10))/10 }, duration * (1/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (2/30) * 10))/10 }, duration * (2/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (3/30) * 10))/10 }, duration * (3/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (4/30) * 10))/10 }, duration * (4/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (5/30) * 10))/10 }, duration * (5/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (6/30) * 10))/10 }, duration * (6/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (7/30) * 10))/10 }, duration * (7/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (8/30) * 10))/10 }, duration * (8/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (9/30) * 10))/10 }, duration * (9/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (10/30) * 10))/10 }, duration * (10/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (11/30) * 10))/10 }, duration * (11/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (12/30) * 10))/10 }, duration * (12/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (13/30) * 10))/10 }, duration * (13/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (14/30) * 10))/10 }, duration * (14/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (15/30) * 10))/10 }, duration * (15/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (16/30) * 10))/10 }, duration * (16/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (17/30) * 10))/10 }, duration * (17/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (18/30) * 10))/10 }, duration * (18/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (19/30) * 10))/10 }, duration * (19/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (20/30) * 10))/10 }, duration * (20/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (21/30) * 10))/10 }, duration * (21/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (22/30) * 10))/10 }, duration * (22/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (23/30) * 10))/10 }, duration * (23/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (24/30) * 10))/10 }, duration * (24/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (25/30) * 10))/10 }, duration * (25/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (26/30) * 10))/10 }, duration * (26/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (27/30) * 10))/10 }, duration * (27/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (28/30) * 10))/10 }, duration * (28/30) );
+  setTimeout (function() { obj.innerHTML = Math.round((hours * (29/30) * 10))/10 }, duration * (29/30) );
+  setTimeout (function() { obj.innerHTML = hours }, duration * (30/30) );
+}
+
+function animate(obj, initVal, lastVal, duration) {
+   let startTime = null;
+
+    //get the current timestamp and assign it to the currentTime variable
+    let currentTime = Date.now();
+
+    //pass the current timestamp to the step function
+    const step = (currentTime ) => {
+
+    //if the start time is null, assign the current time to startTime
+    if (!startTime) {
+       startTime = currentTime ;
+    }
+
+    //calculate the value to be used in calculating the number to be displayed
+    const progress = Math.min((currentTime - startTime)/ duration, 1);
+
+    //calculate what to be displayed using the value gotten above
+    obj.innerHTML = Math.floor(progress * (lastVal - initVal) + initVal);
+
+    //checking to make sure the counter does not exceed the last value (lastVal)
+    if (progress < 1) {
+       window.requestAnimationFrame(step);
+    } else {
+          window.cancelAnimationFrame(window.requestAnimationFrame(step));
+       }
+    };
+    //start animating
+       window.requestAnimationFrame(step);
+}
+
+</script>
+
+
+
+
+
+</html>
