@@ -1,1 +1,1607 @@
+<!doctype html>
+<html lang="en" class="export">
 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, viewport-fit=cover",>
+
+  <title>刷动画学英语</title>
+
+  <link rel="stylesheet" href="cartoon_swipe3_v1.8.css" media="screen">
+
+  <!-- videojs scripts -->
+  <link href="https://cdn.hellopappa.com/lib/videojs/video-js.css" rel="stylesheet" />
+  <script src="https://cdn.hellopappa.com/lib/videojs/video.min.js"></script>
+
+  <!-- swiper js files -->
+  <link rel="stylesheet" href="https://cdn.hellopappa.com/lib/swiperjs/swiper-bundle.min.css"/>
+  <script src="https://cdn.hellopappa.com/lib/swiperjs/swiper-bundle.min.js"></script>
+
+  <!-- jQuery -->
+  <script src="https://cdn.hellopappa.com/lib/jquery-3.6.4.min.js"></script>
+
+  <!-- Wechat JS -->
+  <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
+
+  <!-- PACE progress bar loading -->
+  <script src="https://cdn.hellopappa.com/lib/pace_loading_bar/pace.min.js"></script>
+  <link href="https://cdn.hellopappa.com/lib/pace_loading_bar/pace_loading_bar.css" rel="stylesheet" />
+
+  <!-- Baidu analytics code -->
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?4b269ec12f3b46953c0250d11b44331c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129115472-1"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-129115472-1');
+  </script> -->
+
+
+<!-- Google custom font -->
+<style>@import url('https://fonts.googleapis.com/css2?family=Knewave&display=swap');</style>
+
+
+<style>
+html, body {
+  width: auto!important;
+  height: auto!important;
+  overflow-x: hidden!important;
+  overflow-y: hidden!important;
+}
+
+</style>
+
+
+</head>
+
+<body data-basename="index" class="body_center">
+
+<!-- Canvas reward animation layer -->
+    <canvas id="confetti-canvas" style="position: absolute; ;z-index: 9999999; pointer-events:none; left: 0px; " width="2000" height="1000"></canvas>
+    <canvas id="balloon-canvas" style="position: absolute; ;z-index: 9999999; pointer-events:none; left: 0px;" width="2000" height="1000" style="border: 1px solid blue;"></canvas>
+
+<!-- background image (cover, no scrolling)  -->
+<!-- <div class="background_image wallpaper"></div> -->
+
+    <audio id="audio" src="https://www.hellopappa.com/endless_cartoon/common/audio/pop.mp3" preload="auto"></audio>
+    <audio id="welcome_alligator" src="misc_audio/prompt_paid.mp3" preload="auto"></audio>
+    <audio id="sfx_simplepop" src="https://www.hellopappa.com/endless_cartoon/common/audio/pop.mp3" preload="auto"></audio>
+    <audio id="wrong1" src="https://www.hellopappa.com/endless_cartoon/common/audio/wrong1.mp3" preload="auto"></audio>
+    <audio id="wrong2" src="https://www.hellopappa.com/endless_cartoon/common/audio/wrong2.mp3" preload="auto"></audio>
+    <audio id="wrong3" src="https://www.hellopappa.com/endless_cartoon/common/audio/wrong3.mp3" preload="auto"></audio>
+    <audio id="wrong_mp3_whereis" src="https://www.hellopappa.com/endless_cartoon/common/audio/wrong_whereis.mp3" preload="auto"></audio>
+
+
+<div class="landscape_reminder portrait_only">
+  <img class="landscape_reminder_img portrait_only" src="https://www.hellopappa.com/endless_cartoon/common/images/rotatescreen.gif">
+  <!-- <p class="landscape_reminder_txt portrait_only">&nbsp&nbsp&nbsp转横屏看 ...</p> -->
+</div>
+
+<div id="main_body">
+
+
+<!-- NAVIGATION LAYER -->
+
+    <!-- beachball loading gif -->
+    <!-- <div id="loading_gif_screen" class="conceal" style="height: 90vh; display: flex; align-items: center; justify-content: center; flex-flow: column wrap;">
+      <img id="loading_gif_src" class="rotate_infinite" src="ci_img/beachball.png">
+      <div style="width: 40%;"><div class="meter"><span class="" style="width: 100%;"></span></div></div>
+    </div> -->
+
+    <!-- play + next video button overlay -->
+    <img id="play_button" class="conceal" src="https://www.hellopappa.com/endless_cartoon/common/images/play_button.png" onclick="playButtonToggle(this);">
+    <img id="next_video_button" class="conceal" src="https://www.hellopappa.com/endless_cartoon/common/images/icon_next_video.png" onclick="nextVideoButtonToggle(this);">
+
+    <!-- Like box overlay -->
+    <div id="like_div_wrapper" class="popmed2 conceal" onclick="toggleLikeCount();">
+      <p class="like_count_text"><img class="like_heart_img" src="https://www.hellopappa.com/endless_cartoon/common/images/like.png"><span id="like_count_sum">0</span></p>
+    </div>
+
+    <!-- Winstreak box overlay -->
+    <div id="winstreak_div_wrapper" style="color: white;" class="">
+      <div id="winstreak_subwrapper0" class="wintext conceal"><div id="winstreak_text0" style="margin-left: 25px;"><span class="winstreak_count_text">5</span><span style="font-style: normal;"> &#10004;&#xFE0E;</span></div></div> <!-- &#10004; is a checkmark html code, &#xFE0E; required for iOS so it doesn't show an emoji -->
+      <div id="winstreak_subwrapper1" class="wintext conceal"><img id="winstreak_fire1" class="fire" style="opacity: 0%" src="https://www.hellopappa.com/endless_cartoon/common/images/fire1.gif"><div id="winstreak_text1"><span class="winstreak_count_text">3</span><span style="font-style: normal;"> &#10004;&#xFE0E;</span></div></div>
+      <div id="winstreak_subwrapper2" class="wintext conceal"><img id="winstreak_fire2" class="fire" style="opacity: 0%" src="https://www.hellopappa.com/endless_cartoon/common/images/fire2.gif"><div id="winstreak_text2"><span class="winstreak_count_text">6</span><span style="font-style: normal;"> &#10004;&#xFE0E;</span></div></div>
+      <div id="winstreak_subwrapper3" class="wintext conceal"><img id="winstreak_fire3" class="fire" style="opacity: 0%" src="https://www.hellopappa.com/endless_cartoon/common/images/fire3.gif"><div id="winstreak_text3"><span class="winstreak_count_text">9</span><span style="font-style: normal;"> &#10004;&#xFE0E;</span></div></div>
+      <div id="winstreak_subwrapper4" class="wintext conceal"><img id="winstreak_fire4" class="fire" style="opacity: 0%" src="https://www.hellopappa.com/endless_cartoon/common/images/fire4.gif"><div id="winstreak_text4"><span class="winstreak_count_text">12</span><span style="font-style: normal;"> &#10004;&#xFE0E;</span></div></div>
+      <div id="winstreak_subwrapper5" class="wintext conceal"><img id="winstreak_fire5" class="fire" style="opacity: 0%" src="https://www.hellopappa.com/endless_cartoon/common/images/fire5.gif"><div id="winstreak_text5"><span class="winstreak_count_text">15</span><span style="font-style: normal;"> &#10004;&#xFE0E;</span></div></div>
+    </div>
+
+    <!-- Next prev slide tap area -->
+    <div id="prev_arrow_tap_area" class="conceal" onclick="swiper.slidePrev(350, false); hidePrevArrow();"></div>
+    <div id="next_arrow_tap_area" class="conceal" onclick="skiptoQAorNextSlide(); noClickLayer_On();"></div>
+    <div id="prev_arrow_tap_area_QA" class="conceal" onclick="skipQA(-1); hidePrevArrow();"></div>
+    <div id="next_arrow_tap_area_QA" class="conceal" onclick="skipQA(1);"></div>
+
+    <div id="replay_dimbox" class="conceal"></div>
+
+    <!-- Q&A letterbox overlay (note: not used currently)-->
+    <div id="no_click_layer" class="conceal">
+      <div id="letterbox_left"></div><div id="letterbox_right"></div><div id="letterbox_top"></div><div id="letterbox_bottom"></div>
+    </div>
+
+
+<!-- 1 OF 5 - QA IMAGE SCENE LAYER (including POST IMG SCENES if available) -->
+
+    <!-- Standard a/b and yes/no qa scene -->
+    <div id="qa_div_wrapper_default" class="conceal">
+          <div id="qa_small_ab_div_flexrow1"></div>
+          <img id="qa_scene_img" src='qa_img/0.jpeg'>
+          <div id="qa_small_ab_div_flexrow3"></div>
+    </div>
+    <!-- Where is qa scene -->
+    <div id="qa_div_wrapper_default2" class="conceal">
+      <img id="qa_scene_img_whereis" class="" src='qa_img/0.jpeg'>
+      <img class="fingerpoint" src='https://www.hellopappa.com/endless_cartoon/common/images/icon_fingerpoint.gif'>
+    </div>
+
+
+<!-- 2 OF 5 - QA CI_TAG LAYER, one img DOM per slide as needed -->
+    <div id="qa_ci_tag_wrapper" class="conceal">
+      <div id="qa_ci_tag_scenebox1_wrapper" style="width: 100%; height: 100%">
+      <!-- CI_TAGS A/B Q&A -->
+      <!-- note1: ‘qa_ci_img' *must* be first class, ci_class_type animation *must* be 2nd class, conceal class must be included -->
+      <!-- note2: available animation classes: -->
+      <!--        ci_question_mark, ci_scaledown, ci_slideX (X = direction), ci_slideX2 (shorter travel) ) -->
+      <!--        ci_post_scaleup, ci_post_scaleup_delay, ci_post_scaleup_slow, ci_post_slideX, ci_post_slideX2 (very short travel) -->
+      <!-- note3: to make a ci_tag appear *post* q&a, add the class "post_reply" -->
+        <div id="qa_small_ab_div_flexrow1"></div>
+        <div id="qa_ci_tag_scenebox1" class="conceal">
+        <!-- PRE TEMPLATES: Arrow, "reveal" Question Mark, "normal" Question Mark -->
+            <!-- <div id="ci_id" class="qa_ci_img ci_slideright conceal" style="width: 18%; height: auto; left: 50%; top: 50%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div> -->
+            <!-- <div id="ci_id" class="qa_ci_img ci_question_mark conceal" style="width: 35%; height: auto; left: 33%; top: 20%;"><img style="max-width: 100%;" src='ci_img/question_mark.png'></div> -->
+            <!-- <div id="ci_id" class="qa_ci_img ci_scaledown conceal" style="width: 10%; height: auto; left: 52%; top: 51%;"><img style="max-width: 100%;" src='ci_img/question_mark.png'></div> -->
+        <!-- POST TEMPLATES: Post Scene Img, Greencheck, YellowArrow -->
+            <!-- note: post scene img id = mp4 + post (e.g., id="tw_1_full_1_post") -->
+            <!-- <div id="ci_id" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='qa_img/tw_2_up_1b.jpeg'></div> -->
+            <!-- <div id="ci_id" class="qa_ci_img ci_post_scaleup_delay post_reply conceal" style="width: 12%; height: auto; left: 60%; top: 13%;"><img style="max-width: 100%;" src='ci_img/greencheck.png'></div> -->
+            <!-- <div id="ci_id" class="qa_ci_img ci_post_slideright post_reply conceal" style="width: 20%; height: auto; left: 30%; top: 30%;"><img style="max-width: 100%;" src='images/arrow_yellow.png'></div> -->
+        <!-- STARTING ADDING HERE! -->
+          <!-- start adding here -->
+          <div id="tw_1_full_1a" class="qa_ci_img ci_slideright2 conceal" style="width: 18%; height: auto; left: 23%; top: 50%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="tw_1_full_1b" class="qa_ci_img ci_slideleft2 conceal" style="width: 18%; height: auto; left: 72%; top: 50%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="tw_1_full_2a" class="qa_ci_img ci_slideright conceal" style="width: 22%; height: auto; left: 25%; top: 45%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="tw_3_connecting_2a" class="qa_ci_img ci_slideright_down2 conceal" style="width: 18%; height: auto; left: 34%; top: -2%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="tw_4_noisy_2a" class="qa_ci_img ci_slideleft_up conceal" style="width: 18%; height: auto; left: 73%; top: 60%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="tw_6_over_2a" class="qa_ci_img ci_slideright2 conceal" style="width: 19%; height: auto; left: 73%; top: -5%;"><img style="max-width: 100%;" src='ci_img/arrow_right_over.png'></div>
+          <div id="tw_7_through_1a" class="qa_ci_img ci_slidedown2 conceal" style="width: 18%; height: auto; left: 45%; top: 0%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="tw_7_through_2a" class="qa_ci_img ci_slideright_down2 conceal" style="width: 18%; height: auto; left: 25%; top: 9%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="tw_7_through_2b" class="qa_ci_img ci_slideleft_down2 conceal" style="width: 18%; height: auto; left: 65%; top: 5%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="tw_11_getting_wet_2a" class="qa_ci_img ci_slideright conceal" style="width: 23%; height: auto; left: 15%; top: 27%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="tw_13_out_1a" class="qa_ci_img ci_slideright conceal" style="width: 25%; height: auto; left: 10%; top: 12%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="tw_13_out_2a" class="qa_ci_img ci_slideright conceal" style="width: 25%; height: auto; left: 10%; top: 25%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="tw_14_inside_1a" class="qa_ci_img ci_slideright conceal" style="width: 18%; height: auto; left: 27%; top: 46%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="jb_3_I_have_I_want_to_1a" class="qa_ci_img ci_slideright conceal" style="width: 18%; height: auto; left: 38%; top: 35%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="jb_3_I_have_I_want_to_2a" class="qa_ci_img ci_slideright conceal" style="width: 18%; height: auto; left: 38%; top: 35%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="jb_3_I_have_I_want_to_4a" class="qa_ci_img ci_slideright conceal" style="width: 18%; height: auto; left: 38%; top: 25%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="jb_4_wonderful_4a" class="qa_ci_img ci_slideright conceal" style="width: 22%; height: auto; left: 21%; top: 30%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="jb_9_hurry_hide_3a" class="qa_ci_img ci_slideright conceal" style="width: 23%; height: auto; left: 23%; top: 48%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="jb_11_catch_mine_1a" class="qa_ci_img ci_slideleft conceal" style="width: 18%; height: auto; left: 22%; top: 53%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="jb_11_catch_mine_2a" class="qa_ci_img ci_slideleft conceal" style="width: 18%; height: auto; left: 56%; top: 25%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="jb_11_catch_mine_3a" class="qa_ci_img ci_slideleft2 conceal" style="width: 18%; height: auto; left: 84%; top: 40%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="jb_11_catch_mine_3b" class="qa_ci_img ci_slideright2 conceal" style="width: 18%; height: auto; left: 7%; top: 40%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="jb_12_climb_so_many_1a" class="qa_ci_img ci_slideright conceal" style="width: 22%; height: auto; left: 19%; top: 35%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="barbapapa_2_pink__got_4a" class="qa_ci_img ci_slideright_down2 conceal" style="width: 18%; height: auto; left: 47%; top: 43%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="barbapapa_2_pink__got_5a" class="qa_ci_img ci_slideright_down2 conceal" style="width: 18%; height: auto; left: 47%; top: 43%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="barbapapa_6_come_out_2a" class="qa_ci_img ci_slideright2 conceal" style="width: 22%; height: auto; left: 54%; top: 30%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="barbapapa_7_born__come_quick_2a" class="qa_ci_img ci_slideright2 conceal" style="width: 22%; height: auto; left: 45%; top: 48%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="masha_2_who_are_you_1a" class="qa_ci_img ci_slideright conceal" style="width: 23%; height: auto; left: 9%; top: 15%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="masha_2_who_are_you_2a" class="qa_ci_img ci_slideright conceal" style="width: 23%; height: auto; left: 9%; top: 15%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="masha_2_who_are_you_3a" class="qa_ci_img ci_slideleft conceal" style="width: 18%; height: auto; left: 79%; top: 38%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="masha_2_who_are_you_4a" class="qa_ci_img ci_slideleft conceal" style="width: 18%; height: auto; left: 79%; top: 38%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="masha_8_yummy_1a" class="qa_ci_img ci_slideleft conceal" style="width: 18%; height: auto; left: 56%; top: 42%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="masha_14_going_to__get_3a" class="qa_ci_img ci_slideright conceal" style="width: 18%; height: auto; left: 43%; top: 50%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="masha_14_going_to__get_4a" class="qa_ci_img ci_slideright conceal" style="width: 18%; height: auto; left: 43%; top: 50%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="paw_2_dessert_3a" class="qa_ci_img ci_slideleft conceal" style="width: 14%; height: auto; left: 76%; top: 50%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="paw_2_dessert_3b" class="qa_ci_img ci_slideright conceal" style="width: 14%; height: auto; left: 37%; top: 50%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="paw_3_shake__dance_1a" class="qa_ci_img ci_slideright conceal" style="width: 18%; height: auto; left: 14%; top: 50%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="paw_3_shake__dance_1b" class="qa_ci_img ci_slideleft conceal" style="width: 18%; height: auto; left: 64.5%; top: 3%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="peppa_8_buy__new_4a" class="qa_ci_img ci_slideright conceal" style="width: 18%; height: auto; left: 10%; top: 58%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="peppa_10_what_are_they_doing_1a" class="qa_ci_img ci_slideup2 conceal" style="width: 18%; height: auto; left: 41.5%; top: 12%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="peppa_10_what_are_they_doing_2a" class="qa_ci_img ci_slideup2 conceal" style="width: 18%; height: auto; left: 41.5%; top: 12%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="peppa_11_shopping__trolley_1a" class="qa_ci_img ci_slideright_down2 conceal" style="width: 18%; height: auto; left: 4%; top: 36%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="peppa_11_shopping__trolley_2a" class="qa_ci_img ci_slideright_down2 conceal" style="width: 18%; height: auto; left: 4%; top: 36%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="peppa_12_fruit_1a" class="qa_ci_img ci_slideleft conceal" style="width: 18%; height: auto; left: 59%; top: 27%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="peppa_12_fruit_2a" class="qa_ci_img ci_slideleft_up2 conceal" style="width: 18%; height: auto; left: 31%; top: 61%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="sss_2_skip__whats_that_1a" class="qa_ci_img ci_slideright conceal" style="width: 20%; height: auto; left: 18%; top: 30%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="sss_2_skip__whats_that_2a" class="qa_ci_img ci_slideright conceal" style="width: 20%; height: auto; left: 18%; top: 30%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="sss_6_put_on_2a" class="qa_ci_img ci_slideright conceal" style="width: 18%; height: auto; left: 46%; top: 59%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="sss_6_put_on_3a" class="qa_ci_img ci_slideright conceal" style="width: 18%; height: auto; left: 46%; top: 59%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="sss_24_knock_2a" class="qa_ci_img ci_slideright conceal" style="width: 18%; height: auto; left: 13%; top: 50%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <div id="sss_24_knock_3a" class="qa_ci_img ci_slideright conceal" style="width: 18%; height: auto; left: 13%; top: 50%;"><img style="max-width: 100%;" src='ci_img/arrow_red.png'></div>
+          <!-- START post_img scenes CI_TAGS -->
+          <!-- note: img src will be relocated to 'cartoon_qa_set1_finalX_v1.1 post_ci_img.js' !!! -->
+          <div id="tw_2_up_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="tw_3_connecting_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="tw_3_connecting_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="tw_4_noisy_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="tw_4_noisy_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="tw_6_over_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="tw_7_through_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="tw_7_through_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="tw_8_soft_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="tw_8_soft_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="tw_9_pop_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="tw_9_pop_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="tw_11_getting_wet_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="tw_12_out_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="tw_12_out_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="jb_1_sleepy_tired_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="jb_3_I_have_I_want_to_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="jb_3_I_have_I_want_to_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="jb_3_I_have_I_want_to_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="jb_3_I_have_I_want_to_4_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="jb_11_catch_mine_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="jb_11_catch_mine_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="jb_12_climb_so_many_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="jb_14_jump_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="jb_15_break_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="barbapapa_1_grow_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="barbapapa_1_grow_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="barbapapa_1_grow_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="barbapapa_4_help__idea_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="barbapapa_4_help__idea_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="barbapapa_4_help__idea_4_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="barbapapa_5_smell__fire_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="barbapapa_5_smell__fire_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="barbapapa_6_come_out_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="barbapapa_7_born__come_quick_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="jojo_1_next__quick_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="jojo_1_next__quick_4_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="jojo_2_number__see_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="jojo_2_number__see_4_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="masha_1_where_are_you_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="masha_1_where_are_you_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="masha_2_who_are_you_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="masha_2_who_are_you_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="masha_2_who_are_you_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="masha_2_who_are_you_4_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="masha_3_give_me__merry_christmas_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="masha_3_give_me__merry_christmas_4_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="masha_4_no_way_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="masha_5_astronaut_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="masha_5_astronaut_4_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="masha_7_look_at_me_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="masha_7_look_at_me_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="masha_8_yummy_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="masha_9_is_something_wrong_qa1_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="masha_9_is_something_wrong_qa1_4_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="masha_10_recess_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="masha_10_recess_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="masha_10_recess_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="masha_11_hide__I_found_you_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="masha_15_I_did_it_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="masha_18_assist_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="masha_19_this_way__that_way_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="masha_19_this_way__that_way_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="paw_1_cross__problem_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="paw_1_cross__problem_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="paw_2_dessert_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="paw_3_shake__dance_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="paw_3_shake__dance_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="paw_4_present__more_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="paw_4_present__more_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="paw_4_present__more_4_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="paw_5_miss__bunny_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="paw_5_miss__bunny_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="paw_5_miss__bunny_4_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="paw_5_miss__bunny_5_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="peppa_3_fair__helping_hand_4_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="peppa_4_tease_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="peppa_4_tease_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="peppa_4_tease_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="peppa_6_grow__silly_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="peppa_6_grow__silly_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="peppa_6_grow__silly_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="peppa_6_grow__silly_4_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="peppa_7_drink__hiccup_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="peppa_8_buy__new_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="peppa_8_buy__new_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="peppa_10_what_are_they_doing_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="peppa_10_what_are_they_doing_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="peppa_11_shopping__trolley_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="peppa_11_shopping__trolley_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="peppa_12_fruit_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="peppa_12_fruit_4_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="peppa_13_tomato__I_can_see_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="peppa_13_tomato__I_can_see_4_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="peppa_14_who_did_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="peppa_14_who_did_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="peppa_15_spaghetti_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="peppa_15_spaghetti_4_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_2_skip__whats_that_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_2_skip__whats_that_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_6_put_on_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_6_put_on_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_6_put_on_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_7_get_dressed_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_8_this_is_the_way_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_8_this_is_the_way_4_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_10_zipup_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_10_zipup_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_14_brush_teeth_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_14_brush_teeth_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_15_pajamas_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_15_pajamas_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_17_say_good_night_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_17_say_good_night_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_17_say_good_night_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_17_say_good_night_4_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_18_take_a_bath_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_18_take_a_bath_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_18_take_a_bath_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_18_take_a_bath_4_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_19_do_you_like_1_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_19_do_you_like_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_19_do_you_like_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_24_knock_2_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <div id="sss_24_knock_3_post" class="qa_ci_img ci_post_scaleup post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_src" style="max-width: 100%;" src='misc_img/0.jpeg'></div>
+          <!-- END post_img scenes CI_TAGS -->
+          <!-- end of CI_TAGS -->
+        </div>
+        <div id="qa_small_ab_div_flexrow3"></div>
+      </div>
+
+      <!-- CI_TAGS WHERE IS Q&A -->
+      <div id="qa_ci_tag_scenebox2" class="conceal">
+        <div id="whereis_target_wrong" onclick="replyAnswer_wrong_whereis();"></div> <!-- main target_wrong hitbox, must keep here -->
+        <div class="replay_wrapper">
+          <img class="replay_button pop conceal" onclick="replayQA();" src="https://www.hellopappa.com/endless_cartoon/common/images/replay_qa.png">
+          <img class="replay_button2 pop conceal" onclick="replayCurrentVideo();" src="https://www.hellopappa.com/endless_cartoon/common/images/replay_video.png">
+        </div>
+      <!-- TEMPLATES for Whereis Target bBox, Post QA Ci_arrow short slide in -->
+        <!-- <div id="jb_who_has_camera" class="qa_ci_img whereis_target conceal" style="height: 62.5%; width: 20.5%; left: 19%; top: 18%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div> -->
+        <!-- <div id="jb_who_has_camera2" class="qa_ci_img ci_post_slideright2 post_reply conceal" style="width: 12%; height: auto; left: 15%; top: 52%; z-index: 100;"><img style="max-width: 100%;" src='ci_img/arrow_yellow.png'></div> -->
+        <!-- start adding here -->
+        <div id="jb_5_dolphin_animal_1_wh" class="qa_ci_img whereis_target conceal" style="height: 12%; width: 53%; left: 25%; top: 70%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="jb_5_dolphin_animal_2_wh" class="qa_ci_img whereis_target conceal" style="height: 15%; width: 18%; left: 32%; top: 61%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="jb_6_giraffe_elephant_1_wh" class="qa_ci_img whereis_target conceal" style="height: 22%; width: 36%; left: 29%; top: 1%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="jb_6_giraffe_elephant_2_wh" class="qa_ci_img whereis_target conceal" style="height: 39%; width: 26.5%; left: 69%; top: 53%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="jb_7_hedgehog_rhino_1_wh" class="qa_ci_img whereis_target conceal" style="height: 32%; width: 27%; left: 60%; top: 48%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="jb_10_I_cant_where_is_it_3_wh" class="qa_ci_img whereis_target conceal" style="height: 10%; width: 6%; left: 30%; top: 13%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="jb_10_I_cant_where_is_it_4_wh" class="qa_ci_img whereis_target conceal" style="height: 11%; width: 5%; left: 30%; top: 23%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="jb_17_hole_many_1_wh" class="qa_ci_img whereis_target conceal" style="height: 13%; width: 45%; left: 42%; top: 72%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="jb_17_hole_many_2_wh" class="qa_ci_img whereis_target conceal" style="height: 21%; width: 37%; left: 14%; top: 61%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="barbapapa_2_pink__got_1_wh" class="qa_ci_img whereis_target conceal" style="height: 90%; width: 27%; left: 19%; top: 1%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="barbapapa_4_help__idea_1_wh" class="qa_ci_img whereis_target conceal" style="height: 52%; width: 44%; left: 24%; top: 1%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="barbapapa_5_smell__fire_3_wh" class="qa_ci_img whereis_target conceal" style="height: 22%; width: 29%; left: 49%; top: 36%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="barbapapa_6_come_out_1_wh" class="qa_ci_img whereis_target conceal" style="height: 65%; width: 28%; left: 67%; top: 22%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="barbapapa_7_born__come_quick_1_wh" class="qa_ci_img whereis_target conceal" style="height: 55%; width: 33%; left: 34%; top: 36%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="jojo_2_number__see_2_wh" class="qa_ci_img whereis_target conceal" style="height: 14%; width: 7%; left: 57%; top: 40%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="jojo_3_bee__find_1_wh" class="qa_ci_img whereis_target conceal" style="height: 12%; width: 10%; left: 61%; top: 49%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="jojo_3_bee__find_2_wh" class="qa_ci_img whereis_target conceal" style="height: 13%; width: 10%; left: 40%; top: 4%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="jojo_4_butterfly__caterpillar_1_wh" class="qa_ci_img whereis_target conceal" style="height: 15%; width: 10%; left: 12%; top: 52%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="jojo_5_tree__ladybird_1_wh" class="qa_ci_img whereis_target conceal" style="height: 33%; width: 23%; left: 5%; top: 1.5%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="jojo_5_tree__ladybird_2_wh" class="qa_ci_img whereis_target conceal" style="height: 54%; width: 29%; left: 55%; top: 3%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="jojo_5_tree__ladybird_3_wh" class="qa_ci_img whereis_target conceal" style="height: 28%; width: 21%; left: 16%; top: 35%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="jojo_5_tree__ladybird_4_wh" class="qa_ci_img whereis_target conceal" style="height: 15%; width: 9.5%; left: 46%; top: 27%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="masha_1_where_are_you_1_wh" class="qa_ci_img whereis_target conceal" style="height: 14%; width: 44%; left: 13%; top: 54%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="paw_2_dessert_1_wh" class="qa_ci_img whereis_target conceal" style="height: 17%; width: 13%; left: 12%; top: 46%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+	      <div id="paw_4_present__more_3_wh" class="qa_ci_img whereis_target conceal" style="height: 19%; width: 24%; left: 70%; top: 38%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="paw_5_miss__bunny_3_wh" class="qa_ci_img whereis_target conceal" style="height: 13%; width: 8%; left: 68%; top: 73%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="peppa_2_touch__show_2_wh" class="qa_ci_img whereis_target conceal" style="height: 57%; width: 20%; left: 35%; top: 25%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="peppa_5_wear_glasses__take_off_1_wh" class="qa_ci_img whereis_target conceal" style="height: 87%; width: 41%; left: 11%; top: 2%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="peppa_7_drink__hiccup_1_wh" class="qa_ci_img whereis_target conceal" style="height: 66%; width: 31%; left: 9%; top: 18%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="peppa_8_buy__new_3_wh" class="qa_ci_img whereis_target conceal" style="height: 39%; width: 16%; left: 31%; top: 50%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="peppa_9_put__stir_3_wh" class="qa_ci_img whereis_target conceal" style="height: 63%; width: 37%; left: 50%; top: 15%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="peppa_11_shopping__trolley_3_wh" class="qa_ci_img whereis_target conceal" style="height: 26%; width: 13%; left: 42%; top: 36%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="peppa_13_tomato__I_can_see_1_wh" class="qa_ci_img whereis_target conceal" style="height: 44%; width: 34%; left: 35%; top: 37%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="peppa_13_tomato__I_can_see_2_wh" class="qa_ci_img whereis_target conceal" style="height: 26%; width: 12%; left: 69%; top: 43%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="peppa_14_who_did_3_wh" class="qa_ci_img whereis_target conceal" style="height: 59%; width: 26%; left: 5.5%; top: 24%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="sss_1_jump__listen_2_wh" class="qa_ci_img whereis_target conceal" style="height: 75%; width: 19%; left: 76%; top: 11%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="sss_5_button_1_wh" class="qa_ci_img whereis_target conceal" style="height: 13%; width: 7.5%; left: 40%; top: 69%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="sss_15_pajamas_1_wh" class="qa_ci_img whereis_target conceal" style="height: 34%; width: 29%; left: 22%; top: 57%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="sss_23_ballerina_1_wh" class="qa_ci_img whereis_target conceal" style="height: 65%; width: 30%; left: 2%; top: 27%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <div id="sss_26_who_are_you_1_wh" class="qa_ci_img whereis_target conceal" style="height: 93%; width: 33%; left: 55%; top: 1%;" onclick="replyAnswer_correct(); whereisTargetBoxPop(this);"></div>
+        <!-- Where is POST IMG scenes -->
+        <div id="jb_5_dolphin_animal_1_post" class="qa_ci_img fadein_med_delay post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_whereis_src" src='misc_img/0.jpeg'></div>
+        <div id="jb_6_giraffe_elephant_1_post" class="qa_ci_img fadein_med_delay post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_whereis_src" src='misc_img/0.jpeg'></div>
+        <div id="jb_6_giraffe_elephant_2_post" class="qa_ci_img fadein_med_delay post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_whereis_src" src='misc_img/0.jpeg'></div>
+        <div id="jb_7_hedgehog_rhino_1_post" class="qa_ci_img fadein_med_delay post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_whereis_src" src='misc_img/0.jpeg'></div>
+        <div id="masha_1_where_are_you_1_post" class="qa_ci_img fadein_med_delay post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_whereis_src" src='misc_img/0.jpeg'></div>
+        <div id="peppa_14_who_did_3_post" class="qa_ci_img fadein_med_delay post_reply conceal" style="width: 100%; height: auto; left: 0%; top: 0%;"><img class="post_img_whereis_src" src='misc_img/0.jpeg'></div>
+        <!-- end of WHEREIS TARGET BOXES -->
+      </div>
+
+    </div>
+
+
+<!-- 3 OF 5 - A/B BUTTON LAYER -->
+    <!-- small a b qa_type -->
+    <div id="qa_a_b_icon_wrapper" class="conceal">
+      <div id="qa_a_b_subwrapper">
+        <div id="qa_left_wrapper" class="conceal pop" onclick="replyAnswer(1);" style="background-image: url('qa_icon/yes.png');"></div>
+        <div id="qa_right_wrapper" class="conceal pop" onclick="replyAnswer(2);" style="background-image: url('qa_icon/no.png');"></div>
+      </div>
+      <div class="replay_wrapper">
+        <img class="replay_button pop conceal" onclick="replayQA();" src="https://www.hellopappa.com/endless_cartoon/common/images/replay_qa.png">
+        <img class="replay_button2 pop conceal" onclick="replayCurrentVideo();" src="https://www.hellopappa.com/endless_cartoon/common/images/replay_video.png">
+      </div>
+    </div>
+    <!-- for large A B qa_type (square) -->
+    <div id="qa_a_b_icon_wrapper2a" class="conceal">
+      <img id="qa_left_wrapper2a" class="pop" onclick="replyAnswer(1);" src="qa_icon/yes.png">
+      <img id="qa_right_wrapper2a" class="pop" onclick="replyAnswer(2);" src="qa_icon/no.png">
+      <div class="replay_wrapper">
+        <img class="replay_button pop conceal" onclick="replayQA();" src="https://www.hellopappa.com/endless_cartoon/common/images/replay_qa.png">
+        <img class="replay_button2 pop conceal" onclick="replayCurrentVideo();" src="https://www.hellopappa.com/endless_cartoon/common/images/replay_video.png">
+      </div>
+    </div>
+    <!-- *reserved* for large A B qa_type (1andscape) - currently inactive -->
+    <!-- <div id="qa_a_b_icon_wrapper2b" class="conceal">
+      <img id="qa_left_wrapper2b" class="pop" onclick="replyAnswer(1);" src="qa_icon/1/jb_hairdry_gun.jpeg">
+      <img id="qa_right_wrapper2b" class="pop" onclick="replyAnswer(2);" src="qa_icon/1/jb_penguin_peek.jpeg">
+    </div> -->
+
+
+<!-- 4 OF 5 - QA CONFIRM IMAGE REPLY LAYER -->
+    <img id="qa_reply_img" class="conceal" src="https://www.hellopappa.com/endless_cartoon/common/images/correct1.png">
+    <!-- Q&A wrong confirmation reply image  -->
+    <div id="wrong_reply_dimbox" class="conceal"></div>
+    <!-- Q&A wrong confirmation reply image  -->
+    <img id="qa_reply_img2" class="conceal" src="https://www.hellopappa.com/endless_cartoon/common/images/wrong1.png">
+
+
+<!-- 5 OF 5 - ALLIGATOR NARRATOR LAYER -->
+    <div id="alligator_wrapper" class="">
+      <img id="alligator" class="conceal slideup_fast" src="https://www.hellopappa.com/endless_cartoon/common/images/alligator1.gif">
+    </div>
+    <!-- <img id="please_wait_div" class="conceal" src="https://www.hellopappa.com/endless_cartoon/common/images/icon_plswait.png"> -->
+
+    <!-- Slider main container -->
+    <div class="swiper fadein_slow">
+
+
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+
+        <!-- Slides COVER PAGE -->
+
+        <div class="swiper-slide">
+        <div id="cover_slide" class="cover_slide_center fadein conceal">
+          <div id="cover_cartoon_image" style="background-image: url('https://www.hellopappa.com/endless_cartoon/common/images/cover_img_set1_default.jpeg')"></div>
+          <div id="cover_image_page_tear" style="background-image: url('https://www.hellopappa.com/endless_cartoon/common/images/endless_background_paper_tear_br_default.png')"></div>
+          <div id="goto_like_menu_icon" class="pop" onclick="jumpMiniPage_Landscape('https://www.hellopappa.com/endless_cartoon/set1_wpv/index_like.html')";>
+            <img id="goto_like_menu_img" src="https://www.hellopappa.com/endless_cartoon/common/images/goto_video_liked.png">
+          </div>
+          <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+            <img class="startbutton_img pop_onpress" onclick="pressStartButton();" src="https://www.hellopappa.com/endless_cartoon/common/images/play_button.png">
+          </div>
+        </div>
+        </div>
+
+        <!-- Slides VIDE + Q&A PAGES -->
+
+        <div class="swiper-slide" id="video_slide1">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_1" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide2">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_2" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide3">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_3" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide4">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_4" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide5">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_5" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide6">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_6" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide7">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_7" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide8">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_8" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide9">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_9" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide10">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_10" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide11">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_11" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide12">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_12" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide13">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_13" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide14">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_14" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide15">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_15" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide16">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_16" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide17">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_17" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide18">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_18" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide19">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_19" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide20">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_20" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide21">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_21" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide22">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_22" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide23">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_23" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide24">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_24" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide25">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_25" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide26">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_26" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide27">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_27" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide28">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_28" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide29">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_29" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide30">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_30" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide31">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_31" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide32">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_32" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide33">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_33" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide34">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_34" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide35">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_35" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide36">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_36" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide37">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_37" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide38">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_38" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide39">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_39" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide40">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_40" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide41">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_41" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide42">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_42" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide43">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_43" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide44">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_44" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide45">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_45" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide46">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_46" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide47">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_47" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide48">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_48" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide49">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_49" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide50">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_50" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide51">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_51" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide52">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_52" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide53">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_53" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide54">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_54" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide55">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_55" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide56">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_56" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide57">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_57" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide58">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_58" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide59">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_59" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide60">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_60" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide61">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_61" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide62">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_62" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide63">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_63" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide64">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_64" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide65">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_65" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide66">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_66" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide67">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_67" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide68">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_68" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide69">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_69" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide70">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_70" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide71">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_71" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide72">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_72" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide73">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_73" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide74">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_74" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide75">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_75" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide76">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_76" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide77">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_77" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide78">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_78" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide79">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_79" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide80">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_80" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide81">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_81" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide82">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_82" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide83">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_83" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide84">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_84" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide85">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_85" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide86">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_86" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide87">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_87" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide88">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_88" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide89">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_89" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide90">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_90" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide91">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_91" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide92">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_92" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide93">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_93" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide94">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_94" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide95">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_95" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide96">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_96" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide97">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_97" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide98">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_98" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide99">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_99" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide" id="video_slide100">
+        <div class="cartoon_vid_block"><div class="vid_container">
+        <video id="video_100" class="vid_div_watch" poster="" onclick="toggleVideoPlay(this);" webkit-playsinline playsinline preload="none">
+        <source src="" type="video/mp4"></video>
+        <div class="vid_container_dimbox conceal"></div></div></div></div>
+
+        <div class="swiper-slide"><div class="cartoon_vid_block">
+        <h1>END SLIDE</h1><p>IMPORTANT: *MUST* LEAVE THIS SLIDE IN PLACE, we automatically jump over this slide to return to first video slide</p>
+        </div></div>
+
+      </div>
+      <!-- If we need pagination -->
+      <!-- <div class="swiper-pagination"></div> -->
+
+      <!-- If we need navigation buttons -->
+      <div id="prev_arrow" class="swiper-button-prev prev_arrow_wrapper" onclick="hidePrevArrow();" style="display: none;"></div>
+      <div id="next_arrow" class="swiper-button-next next_arrow_wrapper" style="display: none"></div>
+
+      <!-- If we need scrollbar -->
+      <!-- <div class="swiper-scrollbar"></div> -->
+    </div>
+
+</div>
+
+
+</body>
+
+<script>
+
+// ------------------- //
+// 0. GLOBAL VARIABLES
+// ------------------- //
+
+var video_playorder_str_yp = ''; // play order list single line raw string by YP
+var video_playorder_list_yp = []; // play order list by YP
+var video_playorder_str_original = ''; // backup play order list single line raw string
+var video_playorder_list_original = []; // array for backup play order list
+var video_playorder_list = []; // FINAL playorder list, equals video_playorder_list_yp (if successfully retrieved) OR video_playorder_list_original (as backup)
+var video_like_ind_dict = {}; // provided by YP
+var video_like_total_dict = {}; // provided by YP
+
+var video_main_order_lookup_dict; // used to do randomized smart sorting of video_id playlist
+var video_id; // used to lookup video_id_slidenum from video_main_order_lookup_dict
+var video_id_slidenum; // used to do final lookup in video_main_db
+
+var js_video_shuffle; // 0 = no shuffling (default), 1 = shuffle
+
+var video_url_list = [];
+var video_thumbnail_url_list = [];
+var video_main_db = [];
+
+var mp4_folder = 'video_mp4/'
+var thumbnail_folder = 'video_thumb/'
+
+var qa_audio_folder = 'qa_audio/';
+var qa_audio_reveal_ci_folder = 'qa_audio_reveal_ci/';
+var qa_img_folder = 'qa_img/';
+var qa_icon_folder = 'qa_icon/';
+
+var active_slide = -1; // starting default value;
+var next_slide = -1; // starting default value;;
+var prev_slide = -1; // starting default value;;
+var prev_prev_slide = -1; // starting default value;;
+
+var active_video;
+var next_video;
+var prev_video;
+
+var prev_arrow_allowed_to_show = 1; // 1 = yes can show (default), -1 = no cannot show (*only* activated when user has already clicked on go to previous video, reset to 1 whenever use moves forward to next video again)
+var prev_arrow_active_status = -1;  // -1 = hidden, 1 = showing
+var next_arrow_shown = 0;  // 0 = no, 1 = yes
+var next_arrow_clicked_counter = 0; // default is zero
+
+var current_url = window.location.href;
+var video_start_num = 0; // 0 is default value, represents cover page
+
+var play_counts = 0; // (currently not used ...) default 0, increment 1 each time video played
+var play_button_pressed = 0; // 0 = no, 1 = yes;
+var num_of_slide_changes = 0; // default = 0, increment 1 with each slide change
+
+var prev_arrow = document.getElementById("prev_arrow");
+var next_arrow = document.getElementById("next_arrow");
+var prev_arrow_tap_area = document.getElementById("prev_arrow_tap_area");
+var next_arrow_tap_area = document.getElementById("next_arrow_tap_area");
+var prev_arrow_tap_area_QA = document.getElementById("prev_arrow_tap_area_QA");
+var next_arrow_tap_area_QA = document.getElementById("next_arrow_tap_area_QA");
+
+var mp3audio = document.getElementById("audio");
+var mp3audio_qa; // placeholder for preloading current slide qa mp3 url ahead of time
+var mp3audio_qa_reply = new Audio();
+var mp3_wrong_mp3; // placedholder for holding wrong random mp3 ahead of time, do not need new Audio() b/c gets it from list;
+var mp3_wrong_mp3_whereis; // placehdolder for where is wrong reply mp3,
+
+var loading_gif_status; // 0 = off, 1 = on (default)
+var loading_gif_screen = document.getElementById("loading_gif_screen");
+var cover_slide = document.getElementById("cover_slide");
+
+var video_dimbox_all = document.getElementsByClassName("vid_container_dimbox");
+var qa_letterbox = document.getElementById("qa_letterbox");
+var qa_div_wrapper_default = document.getElementById("qa_div_wrapper_default"); // layout layer for a/b qa type
+var qa_div_wrapper_default2 = document.getElementById("qa_div_wrapper_default2"); // layout layer for whereis qa type
+var qa_a_b_icon_wrapper = document.getElementById("qa_a_b_icon_wrapper"); // a/b button layer, placed on top layer (to ensure pressable)
+var qa_a_b_icon_wrapper2a = document.getElementById("qa_a_b_icon_wrapper2a"); // a/b large qa_type button layer
+var qa_scene_img = document.getElementById("qa_scene_img");
+var qa_scene_img_whereis = document.getElementById("qa_scene_img_whereis");
+var qa_reply_img = document.getElementById("qa_reply_img");
+var qa_reply_img2 = document.getElementById("qa_reply_img2");
+var qa_button_l = document.getElementById('qa_left_wrapper');
+var qa_button_r = document.getElementById('qa_right_wrapper');
+var qa_button_l_big = document.getElementById('qa_left_wrapper2a');
+var qa_button_r_big = document.getElementById('qa_right_wrapper2a');
+var qa_ci_tag_scenebox1 = document.getElementById('qa_ci_tag_scenebox1'); // ci tag wrapper for a b qa_type ci tags
+var qa_ci_tag_scenebox2 = document.getElementById('qa_ci_tag_scenebox2'); // ci tag wrapper for whereis qa_type ci tags// ci tag layer, contains *both* a/b and whereis unique ci tags
+var qa_ci_tag_wrapper = document.getElementById('qa_ci_tag_wrapper'); // ci tag layer, contains *both* a/b and whereis unique ci tags
+var whereis_target_wrong = document.getElementById('whereis_target_wrong');
+
+var alligator_div = document.getElementById("alligator_wrapper");
+var alligator = document.getElementById("alligator");
+var alligator_offair_img = 'https://www.hellopappa.com/endless_cartoon/common/images/alligator1.gif';
+var alligator_onair_img = 'https://www.hellopappa.com/endless_cartoon/common/images/alligator1.gif';  // js will update offair image as one of below 3 versions
+var alligator_talking_img = 'https://www.hellopappa.com/endless_cartoon/common/images/alligator2.gif';
+var alligator_talking_img2 = 'https://www.hellopappa.com/endless_cartoon/common/images/alligator2b.gif';
+var alligator_hurray_still_img = 'https://www.hellopappa.com/endless_cartoon/common/images/alligator3a.gif';
+var alligator_hurray_img = 'https://www.hellopappa.com/endless_cartoon/common/images/alligator3b.gif';
+var alligator_ouch_img = 'https://www.hellopappa.com/endless_cartoon/common/images/alligator4.gif';
+var please_wait_div = document.getElementById("please_wait_div");
+
+var like_div_wrapper = document.getElementById("like_div_wrapper");
+var like_count_num = 0;
+
+var ci_tag_active_div_array;  // for tracking current_slide active CI tag div(s), assuming slide has 1 or more related CI tags
+var ci_tag_whereis_active_div; // for tracking current_slide active whereis targetbox
+
+var qa_has_question_mark_ci = 0; // default = 0, if yes = 1 toggled by revealCiQuestionMark(), reset to 0 at each slidechange
+var qa_has_whereis_ci = 0; // default = 0, if yes = 1 toggled by revealCiQuestionMark(), reset to 0 at each slidechange
+var qa_version_num = 0; // default = 0 referring to first qa version listed, updated at each slide with randomizeNextQaVersionNum (), reset to 0 at each slidechange
+
+var alligator_wait_timeout; // for setting and clearing alligator wait/blinkng timeout function
+var alligator_wait_status = 0; // 0 = default not waiting, 1 = waiting has begun. Reset to 0 on clearTimeout function.
+var alligator_wait_begin_console_log = 0; // Counter for displaying console.log waiting has started just once, resets when alligator_wait_status is also reset
+var replay_button_can_show_status = 0; // 0 = unavailable, 1 = available + can show
+
+var no_click_layer = document.getElementById("no_click_layer");
+var qa_postreply_status = 0; // when - 1, we make no_click_layer persistent, reset to 0 after each slide change
+
+var winstreak_div_wrapper = document.getElementById("winstreak_div_wrapper");
+var winstreak_subwrapper0 = document.getElementById("winstreak_subwrapper0");
+var winstreak_subwrapper1 = document.getElementById("winstreak_subwrapper1");
+var winstreak_subwrapper2 = document.getElementById("winstreak_subwrapper2");
+var winstreak_subwrapper3 = document.getElementById("winstreak_subwrapper3");
+var winstreak_subwrapper4 = document.getElementById("winstreak_subwrapper4");
+var winstreak_subwrapper5 = document.getElementById("winstreak_subwrapper5");
+var winstreak_fire1 = document.getElementById("winstreak_fire1");
+var winstreak_fire2 = document.getElementById("winstreak_fire2");
+var winstreak_fire3 = document.getElementById("winstreak_fire3");
+var winstreak_fire4 = document.getElementById("winstreak_fire4");
+var winstreak_fire5 = document.getElementById("winstreak_fire5");
+var winstreak_text1 = document.getElementById("winstreak_text1");
+var winstreak_text2 = document.getElementById("winstreak_text2");
+var winstreak_text3 = document.getElementById("winstreak_text3");
+var winstreak_text4 = document.getElementById("winstreak_text4");
+var winstreak_text5 = document.getElementById("winstreak_text5");
+var winstreak_count = 0;
+
+var balloon_color_cycle = 1;
+var balloon_gradient_cycle = 1;
+var balloon_color_cycle_rem;
+var balloon_gradient_cycle_rem;
+
+var wrong_mp3_list = [
+  document.getElementById("wrong1"),
+  document.getElementById("wrong2"),
+  document.getElementById("wrong3"),
+]
+
+var reply_right_img_list = [
+  'https://www.hellopappa.com/endless_cartoon/common/images/correct1.png',
+  'https://www.hellopappa.com/endless_cartoon/common/images/correct2.png',
+  'https://www.hellopappa.com/endless_cartoon/common/images/correct3.png',
+  'https://www.hellopappa.com/endless_cartoon/common/images/correct4.png',
+]
+
+var reply_wrong_img_list = [
+  'https://www.hellopappa.com/endless_cartoon/common/images/wrong1.png',
+  'https://www.hellopappa.com/endless_cartoon/common/images/wrong2.png',
+  'https://www.hellopappa.com/endless_cartoon/common/images/wrong3.png',
+  'https://www.hellopappa.com/endless_cartoon/common/images/wrong4.png',
+]
+
+
+var user_open_id = '';
+var score_vid_id = '';
+var score_vid_kw = '';
+// var score_vid_like = 0; // *NOT* needed, replaced by current_vid_like_status, which is determined by video_like_ind_dict
+var score_vid_skip = 0; // 0 = did not skip, 1 = skipped
+var score_vid_time = 0;
+var score_qa_id = '';
+var score_qa_kw = '';
+var score_qa_correct = 0; // 0 = incorrectly answered, 1 = correctly answered
+var score_qa_skip = 0; // 0 = did not skip, 1 = skipped
+var score_qa_time = 0;
+
+var qa_start_time; // for calculating qa_time
+var qa_end_time; // for calculating qa_time
+var qa_replay_status = 0; // default = 0 (no replay), 1 = activated (resets to zero at start of each slide change)
+
+var current_vid_like_status = 0; // 0 = not liked, 1 = liked
+var current_vid_total_likes = 0;
+
+// post_img img url lookups
+var post_ci_img_url_dict = {};
+
+</script>
+
+
+<!-- INITIATE SWIPER JS -->
+
+<script>
+  const swiper = new Swiper('.swiper', {
+
+    // Set parameters
+    direction: 'vertical',
+
+    // Allow loop
+    loop: true,
+
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+
+    // leave as is ...
+    spaceBetween: 300,
+
+    // Disable touch swiping for moving slides
+    allowTouchMove: false,
+
+  });
+</script>
+
+
+<!-- CALL EXTERNAL JS HERE -->
+<!-- has to be *after* initiating swiper js -->
+<script src="cartoon_swipe3_v1.13.js"></script>
+<script src="cartoon_qa_set1_finalX_v1.1.js"></script>
+<script src="cartoon_qa_set1_finalX_v1.1 post_img_urls.js"></script>
+
+
+<!-- SELF INIT FUNCTION  -->
+<script>
+
+// ----------------------- //
+// 1. ON STARTUP FUNCTIONS
+// ----------------------- //
+
+// must keep these global variables, after swiper JS init
+var current_slide = swiper.realIndex;
+var total_slides = swiper.slides.length - 2; // need to minus 2 for some reason
+
+(function () {
+
+  // load initial start button pop sfx
+  mp3audio.load();
+
+  // init functions
+  init_QA_lists();
+  console.log("Total slides: " + total_slides.toString());
+
+  // get user open_id
+  current_url = window.location.href;
+  if (current_url.indexOf('?openid=') != -1) {
+      pos = current_url.indexOf('?openid=') + 8;
+      from_end = (pos - current_url.length);
+      user_open_id = current_url.slice(from_end);
+  } else {
+      user_open_id = 'YP_to_provide' // default placeholder value
+  }
+
+
+  // show loading gif (if setting turned on), then fade in cover slide
+  // if (loading_gif_status == 1) {
+  //   duration = 5250;
+  //   loading_gif_screen.classList.remove("conceal");
+  //     setTimeout(function() {
+  //       loading_gif_screen.classList.add('fadeout_very_slow3');
+  //       setTimeout(function() { loading_gif_screen.classList.add('conceal'); }, 1400 );
+  //     }, duration - 1000 );
+  //     setTimeout(function() { cover_slide.classList.remove('conceal'); }, duration );
+  // // skip loading gif
+  // } else {
+  //   cover_slide.classList.remove('conceal');
+  //   duration = 1000;
+  //   setTimeout(function() { cover_slide.classList.remove('conceal'); }, duration );
+  // }
+
+
+  // get open_id user custom playlist
+  $.ajax({
+    url: "https://app.hellopappa.com/talentpool/english/api/init/qa/list",
+    method:'POST',
+    data: {
+      openid: user_open_id,
+    },
+    success: function( result ) {
+      let qa_list = JSON.parse(result).data;
+      var openid_raw_list = qa_list.split(",");
+      console.log(openid_raw_list);
+      // from raw api feed, generate video playorder list, individual likes list, total likdes list
+      // raw feed format: "video_id|my_like|total_likes') --> e.g., ('peppa_015_set1|0|0')
+      for (var i=0; i<openid_raw_list.length; i++) {
+        temp_array = openid_raw_list[i].split("|");
+        video_playorder_list_yp[i] = temp_array[0];
+        video_like_ind_dict[temp_array[0]] = temp_array[1];
+        video_like_total_dict[temp_array[0]] = temp_array[2];
+      }
+      // IMPORTANT: release version of video playlist (comment out when doing testing)
+      video_playorder_list = video_playorder_list_yp;
+      console.log("video_playorder_list_yp");
+      console.log(video_playorder_list_yp);
+      console.log("video_like_ind_dict");
+      console.log(video_like_ind_dict);
+      console.log("video_like_total_list");
+      console.log(video_like_total_dict);
+
+      // Execute rest of start up functions
+      init_QA_lists_part2();
+      initFirstVideoSlide();
+      setCoverImage();
+
+    },
+
+    error: function ( result ) {
+      // default to locally randomized playlist
+      init_QA_lists_part2();
+
+      // Execute rest of start up functions
+      initFirstVideoSlide()
+    }
+  });
+
+  // slidechange eventlistener
+  swiper.on('slideChange', function () {
+
+    console.log("(slide change)");
+    num_of_slide_changes += 1;
+    qa_version_num = 0; // reset to 1
+    qa_has_question_mark_ci = 0; // reset to 0
+    qa_has_whereis_ci = 0; // reset to 0
+    qa_replay_status = 0; // reset to 0
+    qa_postreply_status = 0; // reset to 0
+    stopAlligatorWaiting(); // stop alligator waiting blnking
+    if (num_of_slide_changes <= 1) {
+      // do nothing
+    } else {
+      noClickLayer_On();
+      setTimeout(function() { noClickLayer_Off(); }, 2000); // needed to prevent child from pressing next twice too quickly in succession
+    }
+    resetLikeCount();
+    resetScore();
+    nextArrowTapArea_On(); // always turn on after first slide change
+    nextArrowTapArea_QA_Off(); // always turn off tap area qa version on slide change
+    prevArrowTapArea_QA_Off(); // always turn off tap area qa version on slide change
+    // randomizeNextQaVersionNum(); // prep next qa random qa_version_num
+    replay_button_can_show_status = 1;
+    // IF REACH FINAL SLIDE, prepare to loop
+    if (swiper.realIndex == total_slides + 1) {  // cannot use current_slide in this line b/c this var not yet updated
+      autoSkipBookEnds_New(2); // elem = 2 refers to last bookend
+    } else if (swiper.realIndex == 0) {
+      autoSkipBookEnds_New(1); // elem = 1 refers to cover bookend
+    // OTHERWISE continue as normal
+    } else {
+      next_arrow_clicked_counter += 1;
+      readyActiveVideos();
+      randomizeCurrentQaVersionNum(); // we begin preloading qa_mp3 and  qa_reply_mp3 here
+      resetPlayButton()
+      hideNextVideoButton();
+
+    }
+    // IF IS FIRST SLIDE CHANGE, show next arrow and like count
+    if (num_of_slide_changes == 1) {
+      showLikeCount();
+      setTimeout(function () { showPrevArrow(); showNextArrow(); next_arrow_shown += 1; }, 1000);
+    }
+
+    // ALWAYS SHOW QA after active_video finishes
+    active_video.onended = function() { showQA(); };
+
+  });
+
+}());
+
+
+function initFirstVideoSlide() {
+
+  // load opening slide (active_video and next_video ONLY)
+  current_slide = swiper.realIndex; // for tracking current slide number, *note* starts at index = 0
+  active_slide = swiper.realIndex;  // for tracking video number, total videos *always* TWO less than total_slides
+  next_slide = current_slide + 1;
+
+  next_video = document.getElementById("video_" + next_slide.toString());
+  next_video.poster = video_thumbnail_url_list[next_slide - 1]; // need to minus 1 b/c index = 0
+  next_video.src = video_url_list[next_slide - 1]; // need to minus 1 b/c index = 0
+
+  // stagger loading of next video, to prioritize active_video loading
+  setTimeout(function() { next_video.load(); }, 3000);
+
+}
+
+function readyActiveVideos() {
+
+  // Define next and prev slides
+  current_slide = swiper.realIndex; // for tracking current slide number, *note* starts at index = 0
+  active_slide = swiper.realIndex;  // for tracking video number, total videos *always* TWO less than total_slides
+  next_slide = current_slide + 1;
+  prev_slide = current_slide - 1;
+  prev_prev_slide = current_slide - 2;
+  video_id_slidenum = video_main_order_lookup_dict[video_playorder_list[current_slide-1]]; // minus 1 here because video_playorder_list index starts at 0
+  // make adjustments to next / prev / prev-prev slides when reaching bookeends
+  // note: there is now a text bookend slide (required or else final video has problems playing)
+  if (current_slide == 1) { prev_slide = total_slides; prev_prev_slide = total_slides - 1; }; // minus 2 b/c there are two bookend slides
+  if (current_slide == 2) { prev_prev_slide = total_slides}; // minus 2 b/c there are two bookend slides
+  if (current_slide == total_slides) { next_slide = 1; };
+  // console.log("Current slide: " + current_slide.toString() + " , Active: " + active_slide.toString() + " , Next: " + next_slide.toString() + ", Prev: " + prev_slide.toString() + " , Prev-Prev: " + prev_prev_slide.toString());
+  console.log("CURRENT SLIDE: " + current_slide);
+  console.log("ACTIVE VIDEO (pos) --> " + video_main_db[video_id_slidenum][1] + " (" + video_id_slidenum + ")");
+
+  active_video = document.getElementById("video_" + active_slide.toString());
+  next_video = document.getElementById("video_" + next_slide.toString());
+  prev_video = document.getElementById("video_" + prev_slide.toString());
+  prev_prev_video = document.getElementById("video_" + prev_prev_slide.toString());
+
+  // Load current active video video if just starting slideshow
+  if (next_arrow_clicked_counter == 0 && current_slide != 0) {
+    active_video.src = video_url_list[active_slide]; // need minus 1 here, index = 0
+    active_video.load();
+  }
+
+  // Play active video
+  if (current_slide == 1) {
+    setTimeout (function () { active_video.play(); }, 500 ); // add slight delay for video1, useful when returning here after a loop
+  } else {
+    active_video.play();
+  }
+
+  // FOR TESTING PURPOSES //
+  // console.log("START PRINTOUT")
+  // console.log("active / next / prev / prev_prev: ")
+  // console.log(active_video);
+  // console.log(next_video);
+  // console.log(prev_video);
+  // console.log(prev_prev_video);
+  // console.log("END PRINTOUT")
+
+  updateLikeCount();
+
+  // Add eventlistener to show next video button at end of video
+  // Need to repeat this line here as well as in self init function
+  active_video.onended = function() { showNextVideoButton(); };
+
+
+  // show playbutton if video hasn't autostarted after 1.5s (applies only to video slides, not bookend slides)
+  if (current_slide != 0 && current_slide != total_slides - 1) {
+    setTimeout(function() {
+      if (active_video.paused) {
+        elem = document.getElementById("play_button");
+        elem.classList.remove("conceal");
+        elem.classList.add("playbutton_fadein"); }
+    }, 750);
+  }
+
+  // Load next video
+  next_video.src = video_url_list[next_slide-1];
+  next_video.load();
+
+  // Pause prev video video from memory
+  if (next_arrow_clicked_counter >= 1) {
+    prev_video.pause();
+    prev_video.currentTime = 0;
+    // IN ADDITION, clear prev/prev video from memory if exists
+    if (next_arrow_clicked_counter >= 2) {
+      prev_prev_video.pause();
+      prev_prev_video.src = ''; // empty source, so it does not stay in memory
+      prev_prev_video.load();
+  }}
+
+}
+
+function jumpMiniPage_Landscape(elem) {
+  let url = '../landscape/landscapeweb?url='+elem;
+  wx.miniProgram.navigateTo({
+      url: url
+  });
+  console.log("点击了新的页面")
+}
+
+
+// uses Weixin autoplay function after loading
+$(document).ready(function() {
+  // set welcome mp3
+  var onboard_starting_alert = document.getElementById('welcome_alligator');
+  // IMPORTANT!!! *UNHIDE* below line when testing on desktop !
+  setTimeout(function() { cover_slide.classList.remove('conceal'); }, 1500);
+  document.addEventListener("WeixinJSBridgeReady", function () {
+    var duration_temp = onboard_starting_alert.duration * 1000 + 300;
+    onboard_starting_alert.play();
+    // show alligator
+    setTimeout(function() {
+      alligator.src = alligator_hurray_img;
+      showAlligator();
+      setTimeout(function() { cover_slide.classList.remove('conceal'); }, 250);
+      setTimeout(function () { alligator.src = alligator_blink_once; }, 1500);
+      setTimeout(function() { hideAlligator(); }, 2500);
+      setTimeout(function () { alligator.src = alligator_offair_img; }, 4000);
+    }, 300);
+  }, false);
+});
+
+
+</script>
+
+<!-- Additional CSS JS animation libraries -->
+<!-- IMPORTANT: must place at bottom, loads last -->
+<script src="https://cdn.hellopappa.com/lib/balloons_v5.js"></script>
+<script src="https://cdn.hellopappa.com/lib/confetti_v3.js"></script>
+
+
+</html>
